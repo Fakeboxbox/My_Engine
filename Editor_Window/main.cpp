@@ -8,14 +8,14 @@
 
 //#pragma comment (lib, "..\\x64\\Debug\\MyEngine_Window.lib")  현재는 비주얼 스튜디오기능써서 연결함.
 
+my::MyApplication application;
+
 #define MAX_LOADSTRING 100
 
 // 전역 변수:
 HINSTANCE hInst;                                // 현재 인스턴스입니다.
 WCHAR szTitle[MAX_LOADSTRING];                  // 제목 표시줄 텍스트입니다.
 WCHAR szWindowClass[MAX_LOADSTRING];            // 기본 창 클래스 이름입니다.
-
-MyApplication app;
 
 // 이 코드 모듈에 포함된 함수의 선언을 전달합니다:
 ATOM                MyRegisterClass(HINSTANCE hInstance);
@@ -32,8 +32,6 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, //프로그램의 인스턴스 �
     UNREFERENCED_PARAMETER(lpCmdLine);
 
     // TODO: 여기에 코드를 입력합니다.
-
-    app.test();
 
     // 전역 문자열을 초기화합니다.
     LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
@@ -74,6 +72,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, //프로그램의 인스턴스 �
         {
             // 메세지가 없을 경우 여기서 처리
             // 게임 로직이 들어가면 된다.
+            application.Run();
         }
     }
 
@@ -125,6 +124,8 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
       CW_USEDEFAULT, 0, 1600, 900, nullptr, nullptr, hInstance, nullptr);
 
+   application.Initialize(hWnd);    // 값복사가 되지 않겠느냐? 생각할수 있는데 핸들은 주소값입니다.
+
    // 2개 이상의 윈도우를 생성가능합니다.
    //HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
       // CW_USEDEFAULT, 0, 1600, 900, nullptr, nullptr, hInstance, nullptr);
@@ -175,35 +176,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         {
             PAINTSTRUCT ps;
             HDC hdc = BeginPaint(hWnd, &ps);
-
-            HBRUSH brush = CreateSolidBrush(RGB(0, 0, 255));
-
-            //SelectObject함수는 이전에 사용했던 GDI 오브젝트를 반환한다.
-            HBRUSH oldBrush = (HBRUSH)SelectObject(hdc, brush);
-
-            Rectangle(hdc, 100, 100, 200, 200);
-
-            SelectObject(hdc, oldBrush);
-            
-            DeleteObject(brush);
-
-            HPEN redpen = CreatePen(PS_SOLID, 2, RGB(255, 0, 0));
-            HPEN oldpen = (HPEN)SelectObject(hdc, redpen);
-
-            Ellipse(hdc, 100, 100, 200, 200);
-
-            SelectObject(hdc, oldpen);
-            DeleteObject(redpen);
-
-            // DC란 화면에 출력에 필요한 모든 정보를 가지는 데이터 구조체이며
-            // GDI모듈에 의해서 관리된다.
-            // 어떤 폰트를 사용할건가? 어떤 선의 굵기를 정해줄건가 어떤 색상으로 그려줄껀가 등
-            // 화면 출력에 필요한 모든 경우는 WinAPI에서는 DC를 통해서 작업을 진행할 수 있다.
-            
-            // 기본적으로 자주 사용되는 GDI 오브젝트를 미리 DC안에 만들어두었는데
-            // 그 오브젝트들을 스톡 오브젝트라고 한다.
-            // 스톡 오브젝트를 사용할 때는 삭제할 필요없이 안전을 위해 기본값으로만 돌려놓읍시다.
-
             // TODO: 여기에 hdc를 사용하는 그리기 코드를 추가합니다...
             EndPaint(hWnd, &ps);
         }
