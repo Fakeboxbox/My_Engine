@@ -1,4 +1,5 @@
 #include "MyGameObject.h"
+#include "MyInput.h"
 
 namespace my
 {
@@ -16,22 +17,22 @@ namespace my
 
 	void MyGameObject::Update()
 	{
-		if (GetAsyncKeyState(VK_LEFT) & 0x8000)
+		if (MyInput::GetKey(eKeyCode::A))
 		{
 			mX -= 0.01f;
 		}
 
-		if (GetAsyncKeyState(VK_RIGHT) & 0x8000)
+		if (MyInput::GetKey(eKeyCode::D))
 		{
 			mX += 0.01f;
 		}
 
-		if (GetAsyncKeyState(VK_UP) & 0x8000)
+		if (MyInput::GetKey(eKeyCode::W))
 		{
 			mY -= 0.01f;
 		}
 
-		if (GetAsyncKeyState(VK_DOWN) & 0x8000)
+		if (MyInput::GetKey(eKeyCode::S))
 		{
 			mY += 0.01f;
 		}
@@ -45,16 +46,16 @@ namespace my
 	void MyGameObject::Render(HDC hdc)
 	{
 		HBRUSH brush = CreateSolidBrush(RGB(0, 0, 255));
-		HBRUSH oldBrush = (HBRUSH)SelectObject(hdc, brush);
+			HBRUSH oldBrush = (HBRUSH)SelectObject(hdc, brush);
 
-		HPEN redpen = CreatePen(PS_SOLID, 2, RGB(255, 0, 0));
-		HPEN oldpen = (HPEN)SelectObject(hdc, redpen);
-		SelectObject(hdc, oldpen);
+			HPEN redpen = CreatePen(PS_SOLID, 2, RGB(255, 0, 0));
+			HPEN oldpen = (HPEN)SelectObject(hdc, redpen);
+			SelectObject(hdc, oldpen);
 
-		Rectangle(hdc, 100 + mX, 100 + mY, 200 + mX, 200 + mY);
+			Rectangle(hdc, 100 + mX, 100 + mY, 200 + mX, 200 + mY);
 
-		SelectObject(hdc, oldBrush);
-		DeleteObject(brush);
-		DeleteObject(redpen);
+			SelectObject(hdc, oldBrush);
+			DeleteObject(brush);
+			DeleteObject(redpen);
 	}
 }

@@ -13,7 +13,6 @@ namespace my
 		void LateUpdate();
 		void Render(HDC hdc);
 
-
 		void SetPosition(float x, float y)
 		{
 			mX = x;

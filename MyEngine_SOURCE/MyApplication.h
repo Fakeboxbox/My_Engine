@@ -8,7 +8,7 @@ namespace my
 	public:
 		MyApplication();
 		~MyApplication();
-
+		
 		void Initialize(HWND hwnd);
 		void Run();
 		void Update();
