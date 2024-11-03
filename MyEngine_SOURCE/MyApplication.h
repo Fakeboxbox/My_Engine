@@ -9,7 +9,7 @@ namespace my
 		MyApplication();
 		~MyApplication();
 		
-		void Initialize(HWND hwnd);
+		void Initialize(HWND hwnd, UINT width, UINT height);
 		void Run();
 		void Update();
 		void LateUpdate();
@@ -18,6 +18,12 @@ namespace my
 	private:
 		HWND mHwnd;
 		HDC mHdc;
+
+		HDC mBackHdc;
+		HBITMAP mBackBitmap;
+
+		UINT mWidth;
+		UINT mHeight;
 
 		float mSpeed;
 
