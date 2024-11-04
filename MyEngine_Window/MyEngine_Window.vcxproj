@@ -20,9 +20,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MyLoadScenes.h" />
+    <ClInclude Include="MyPlayer.h" />
     <ClInclude Include="MyPlayScene.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="MyPlayer.cpp" />
     <ClCompile Include="MyPlayScene.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
