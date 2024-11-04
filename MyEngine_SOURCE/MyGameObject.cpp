@@ -48,17 +48,17 @@ namespace my
 
 	void MyGameObject::Render(HDC hdc)
 	{
-		HBRUSH brush = CreateSolidBrush(RGB(0, 0, 255));
-			HBRUSH oldBrush = (HBRUSH)SelectObject(hdc, brush);
+		HBRUSH brush = CreateSolidBrush(RGB(rand() % 255, rand() % 255, rand() % 255));
+		HBRUSH oldBrush = (HBRUSH)SelectObject(hdc, brush);
 
-			HPEN redpen = CreatePen(PS_SOLID, 2, RGB(255, 0, 0));
-			HPEN oldpen = (HPEN)SelectObject(hdc, redpen);
-			SelectObject(hdc, oldpen);
+		HPEN redpen = CreatePen(PS_SOLID, 2, RGB(rand() % 255, rand() % 255, rand() % 255));
+		HPEN oldpen = (HPEN)SelectObject(hdc, redpen);
+		SelectObject(hdc, oldpen);
 
-			Rectangle(hdc, 100 + mX, 100 + mY, 200 + mX, 200 + mY);
+		Ellipse(hdc, mX, mY, 100 + mX, 100 + mY);
 
-			SelectObject(hdc, oldBrush);
-			DeleteObject(brush);
-			DeleteObject(redpen);
+		SelectObject(hdc, oldBrush);
+		DeleteObject(brush);
+		DeleteObject(redpen);
 	}
 }

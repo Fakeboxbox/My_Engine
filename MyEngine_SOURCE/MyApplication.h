@@ -16,6 +16,12 @@ namespace my
 		void Render();
 
 	private:
+		void ClearRenderTarget();
+		void CopyRenderTarget(HDC sorce, HDC dest);
+		void AdjustWindowCustomRect(HWND hwnd, UINT width, UINT height);
+		void CreateBuffer(UINT width, UINT height);
+		void InitializeEtc();
+
 		HWND mHwnd;
 		HDC mHdc;
 
@@ -24,9 +30,5 @@ namespace my
 
 		UINT mWidth;
 		UINT mHeight;
-
-		float mSpeed;
-
-		MyGameObject mPlayer;
 	};
 }

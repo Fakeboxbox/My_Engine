@@ -5,6 +5,7 @@
 #include "main.h"
 
 #include "..\\MyEngine_SOURCE\\MyApplication.h"
+#include "..\\MyEngine_Window\\MyLoadScenes.h"
 
 //#pragma comment (lib, "..\\x64\\Debug\\MyEngine_Window.lib")  현재는 비주얼 스튜디오기능써서 연결함.
 
@@ -140,6 +141,9 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 
    ShowWindow(hWnd, nCmdShow);
    UpdateWindow(hWnd);
+
+   //load Scenes
+   my::LoadScenes();
 
    return TRUE;
 }
