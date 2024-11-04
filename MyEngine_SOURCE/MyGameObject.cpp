@@ -1,10 +1,11 @@
 #include "MyGameObject.h"
+#include "MyTransform.h"
 
 namespace my
 {
 	MyGameObject::MyGameObject()
 	{
-
+		initializeTransform();
 	}
 
 	MyGameObject::~MyGameObject()
@@ -46,5 +47,10 @@ namespace my
 		{
 			comp->Render(hdc);
 		}
+	}
+
+	void MyGameObject::initializeTransform()
+	{
+		AddComponent<MyTransform>();
 	}
 }

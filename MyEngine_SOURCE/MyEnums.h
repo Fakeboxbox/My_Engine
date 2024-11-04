@@ -1,6 +1,6 @@
 #pragma once
 
-namespace my
+namespace my::enums
 {
 	enum class eLayerType
 	{

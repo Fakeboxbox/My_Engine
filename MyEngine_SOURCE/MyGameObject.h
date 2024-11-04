@@ -42,6 +42,9 @@ namespace my
 		}
 
 	private:
+		void initializeTransform();
+
+	private:
 		std::vector<MyComponent*> mComponents;
 	};
 }

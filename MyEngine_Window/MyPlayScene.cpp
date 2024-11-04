@@ -6,6 +6,7 @@
 #include "MyInput.h"
 #include "MyTitleScene.h"
 #include "MySceneManager.h"
+#include "MyObject.h"
 
 namespace my
 {
@@ -22,7 +23,7 @@ namespace my
 	void MyPlayScene::Initialize()
 	{
 		{
-			bg = new MyPlayer();
+			/*bg = new MyPlayer();
 			MyTransform* tr = bg->AddComponent<MyTransform>();
 			tr->SetPos(Vector2(0, 0));
 			tr->SetName(L"TR");
@@ -30,7 +31,12 @@ namespace my
 			sr->SetName(L"SR");
 			sr->ImageLoad(L"C:\\Users\\danpa\\OneDrive\\πŸ≈¡ »≠∏È\\Project\\MyEngine\\Resources\\CloudOcean.png");
 
-			AddGameObject(bg, eLayerType::BackGround);
+			AddGameObject(bg, eLayerType::BackGround);*/
+
+			bg = object::Instantiate<MyPlayer>(enums::eLayerType::BackGround, Vector2(100.0f, 100.0f));
+			MySpriteRenderer* sr = bg->AddComponent<MySpriteRenderer>();
+			sr->ImageLoad(L"C:\\Users\\danpa\\OneDrive\\πŸ≈¡ »≠∏È\\Project\\MyEngine\\Resources\\CloudOcean.png");
+
 		}
 	}
 
@@ -63,7 +69,7 @@ namespace my
 
 	void MyPlayScene::OnExit()
 	{
-		MyTransform* tr = bg->GetComponent<MyTransform>();
-		tr->SetPos(Vector2(0, 0));
+		/*MyTransform* tr = bg->GetComponent<MyTransform>();
+		tr->SetPos(Vector2(0, 0));*/
 	}
 }
