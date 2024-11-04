@@ -22,14 +22,23 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)MyTime.cpp">
       <Filter>Helpers</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)MySpriteRenderer.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)MyTransform.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MyComponent.cpp">
       <Filter>Component</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)MyMath.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MyResource.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MyResources.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MyMath.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MySpriteRenderer.cpp">
+      <Filter>Component</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MyTransform.cpp">
+      <Filter>Component</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MyLayer.cpp">
+      <Filter>Layer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)CommonInclude.h">
@@ -56,14 +65,26 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)MyTime.h">
       <Filter>Helpers</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)MySpriteRenderer.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)MyTransform.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MyComponent.h">
       <Filter>Component</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)MyMath.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MyResource.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MyResources.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MyMath.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MySpriteRenderer.h">
+      <Filter>Component</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MyTransform.h">
+      <Filter>Component</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MyEnums.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MyLayer.h">
+      <Filter>Layer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Common">
@@ -83,6 +104,9 @@
     </Filter>
     <Filter Include="Scene">
       <UniqueIdentifier>{fd822983-e491-4602-83d0-39d45bac6bab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Layer">
+      <UniqueIdentifier>{ceba904f-04c9-4e4b-97b3-6b09fefd8020}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

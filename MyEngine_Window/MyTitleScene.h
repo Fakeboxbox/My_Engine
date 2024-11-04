@@ -3,11 +3,11 @@
 
 namespace my
 {
-	class MyPlayScene : public MyScene
+	class MyTitleScene : public MyScene
 	{
 	public:
-		MyPlayScene();
-		~MyPlayScene();
+		MyTitleScene();
+		~MyTitleScene();
 
 		void Initialize() override;
 		void Update() override;
@@ -18,6 +18,7 @@ namespace my
 		void OnExit() override;
 
 	private:
-		class MyPlayer* bg;
+
 	};
 }
+

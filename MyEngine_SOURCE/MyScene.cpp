@@ -3,9 +3,14 @@
 namespace my
 {
 	MyScene::MyScene()
-		: mGameObjects{}
+		: mLayers{}
 	{
+		mLayers.resize((UINT)eLayerType::Max);
 
+		for (size_t i = 0; i < (UINT)eLayerType::Max; ++i)
+		{
+			mLayers[i] = new MyLayer();
+		}
 	}
 
 	MyScene::~MyScene()
@@ -15,35 +20,68 @@ namespace my
 
 	void MyScene::Initialize()
 	{
+		for (MyLayer* layer : mLayers)
+		{
+			if (layer == nullptr)
+			{
+				continue;
+			}
 
+			layer->Initialize();
+		}
 	}
 
 	void MyScene::Update()
 	{
-		for (MyGameObject* gameObj : mGameObjects)
+		for (MyLayer* layer : mLayers)
 		{
-			gameObj->Update();
+			if (layer == nullptr)
+			{
+				continue;
+			}
+
+			layer->Update();
 		}
 	}
 
 	void MyScene::LateUpdate()
 	{
-		for (MyGameObject* gameObj : mGameObjects)
+		for (MyLayer* layer : mLayers)
 		{
-			gameObj->LateUpdate();
+			if (layer == nullptr)
+			{
+				continue;
+			}
+
+			layer->LateUpdate();
 		}
 	}
 
 	void MyScene::Render(HDC hdc)
 	{
-		for (MyGameObject* gameObj : mGameObjects)
+		for (MyLayer* layer : mLayers)
 		{
-			gameObj->Render(hdc);
+			if (layer == nullptr)
+			{
+				continue;
+			}
+
+			layer->Render(hdc);
 		}
 	}
 
-	void MyScene::AddGameObject(MyGameObject* gameObject)
+	void MyScene::OnEnter()
 	{
-		mGameObjects.push_back(gameObject);
+
+	}
+
+	void MyScene::OnExit()
+	{
+
+	}
+
+	void MyScene::AddGameObject(MyGameObject* gameObj, const eLayerType type)
+	{
+		mLayers[(UINT)type]->AddGameObject(gameObj);
 	}
 }

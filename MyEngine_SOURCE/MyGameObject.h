@@ -19,6 +19,7 @@ namespace my
 		T* AddComponent()
 		{
 			T* comp = new T();
+			comp->Initialize();
 			comp->SetOwner(this);
 			mComponents.push_back(comp);
 
@@ -40,27 +41,7 @@ namespace my
 			return component;
 		}
 
-		//void SetPosition(float x, float y)
-		//{
-		//	mX = x;
-		//	mY = y;
-		//}
-
-		//float GetPositionX()
-		//{
-		//	return mX;
-		//}
-
-		//float GetPositionY()
-		//{
-		//	return mY;
-		//}
-
 	private:
-		//게임 오브젝트의 좌표
-		//float mX;
-		//float mY;
-
 		std::vector<MyComponent*> mComponents;
 	};
 }

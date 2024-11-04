@@ -30,29 +30,6 @@ namespace my
 		{
 			comp->Update();
 		}
-
-
-		/*const int speed = 100.0f;
-
-		if (MyInput::GetKey(eKeyCode::A))
-		{
-			mX -= speed * MyTime::DeltaTime();
-		}
-
-		if (MyInput::GetKey(eKeyCode::D))
-		{
-			mX += speed * MyTime::DeltaTime();
-		}
-
-		if (MyInput::GetKey(eKeyCode::W))
-		{
-			mY -= speed * MyTime::DeltaTime();
-		}
-
-		if (MyInput::GetKey(eKeyCode::S))
-		{
-			mY += speed * MyTime::DeltaTime();
-		}*/
 	}
 
 	void MyGameObject::LateUpdate()

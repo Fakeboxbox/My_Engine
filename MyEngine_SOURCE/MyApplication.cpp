@@ -47,7 +47,7 @@ namespace my
 
 	void MyApplication::LateUpdate()
 	{
-		
+		MySceneManager::LateUpdate();
 	}
 
 	void MyApplication::Render()
