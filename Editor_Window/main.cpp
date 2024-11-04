@@ -10,6 +10,9 @@
 //#pragma comment (lib, "..\\x64\\Debug\\MyEngine_Window.lib")  현재는 비주얼 스튜디오기능써서 연결함.
 
 my::MyApplication application;
+ULONG_PTR gpToken;
+Gdiplus::GdiplusStartupInput gpsi;
+
 
 #define MAX_LOADSTRING 100
 
@@ -76,6 +79,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, //프로그램의 인스턴스 �
             application.Run();
         }
     }
+    
+    Gdiplus::GdiplusShutdown(gpToken);
 
     return (int) msg.wParam;
 }
@@ -141,6 +146,8 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 
    ShowWindow(hWnd, nCmdShow);
    UpdateWindow(hWnd);
+
+   Gdiplus::GdiplusStartup(&gpToken, &gpsi, NULL);
 
    //load Scenes
    my::LoadScenes();

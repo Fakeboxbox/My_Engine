@@ -5,6 +5,9 @@
 namespace my
 {
 	MySpriteRenderer::MySpriteRenderer()
+		: mImage(nullptr)
+		, mWidth(0)
+		, mHeight(0)
 	{
 
 	}
@@ -31,19 +34,17 @@ namespace my
 
 	void MySpriteRenderer::Render(HDC hdc)
 	{
-		HBRUSH brush = CreateSolidBrush(RGB(rand() % 255, rand() % 255, rand() % 255));
-		HBRUSH oldBrush = (HBRUSH)SelectObject(hdc, brush);
-
-		HPEN redpen = CreatePen(PS_SOLID, 2, RGB(rand() % 255, rand() % 255, rand() % 255));
-		HPEN oldpen = (HPEN)SelectObject(hdc, redpen);
-		SelectObject(hdc, oldpen);
-
 		MyTransform* tr = GetOwner()->GetComponent<MyTransform>();
+		Vector2 pos = tr->GetPosition();
 
-		Ellipse(hdc, tr->GetX(), tr->GetY(), 100 + tr->GetX(), 100 + tr->GetY());
+		Gdiplus::Graphics graphics(hdc);
+		graphics.DrawImage(mImage, Gdiplus::Rect(pos.x, pos.y, mWidth, mHeight));
+	}
 
-		SelectObject(hdc, oldBrush);
-		DeleteObject(brush);
-		DeleteObject(redpen);
+	void MySpriteRenderer::ImageLoad(const std::wstring& path)
+	{
+		mImage = Gdiplus::Image::FromFile(path.c_str());
+		mWidth = mImage->GetWidth();
+		mHeight = mImage->GetHeight();
 	}
 }

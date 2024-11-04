@@ -27,6 +27,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)MyComponent.cpp">
       <Filter>Component</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MyMath.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MyResource.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MyResources.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)CommonInclude.h">
@@ -58,6 +61,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)MyComponent.h">
       <Filter>Component</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MyMath.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MyResource.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MyResources.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Common">
