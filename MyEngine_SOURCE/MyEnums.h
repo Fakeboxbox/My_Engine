@@ -6,6 +6,7 @@ namespace my::enums
 	{
 		Transform,
 		SpriteRenderer,
+		Animator,
 		Script,
 		Camera,
 		End
@@ -24,6 +25,7 @@ namespace my::enums
 	{
 		Texture,
 		AudioClip,
+		Animation,
 		Prefab,
 		End
 	};

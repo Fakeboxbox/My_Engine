@@ -20,7 +20,7 @@ namespace my::graphcis
 
 		UINT GetWidth() { return mWidth; }
 		UINT GetHeight() { return mHeight; }
-		HDC GetHDC() { return mHdc; }
+		HDC GetHdc() { return mHdc; }
 		eTextureType GetTextureType() { return mType; }
 		Gdiplus::Image* GetImage() { return mImage; }
 		

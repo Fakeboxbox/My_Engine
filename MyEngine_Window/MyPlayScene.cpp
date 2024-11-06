@@ -12,6 +12,7 @@
 #include "MyPlayerScript.h"
 #include "MyCamera.h"
 #include "MyRenderer.h"
+#include "MyAnimator.h"
 
 namespace my
 {
@@ -35,14 +36,19 @@ namespace my
 
 		// 게임오브젝트를 만들기전에 리소스들을 전부 Load해두면 좋다.
 		mPlayer = object::Instantiate<MyPlayer>(enums::eLayerType::Player);
-		MySpriteRenderer* sr = mPlayer->AddComponent<MySpriteRenderer>();
-		sr->SetSize(Vector2(3.0f, 3.0f));
+		//MySpriteRenderer* sr = mPlayer->AddComponent<MySpriteRenderer>();
+		//sr->SetSize(Vector2(3.0f, 3.0f));
 		mPlayer->AddComponent<MyPlayerScript>();
 
-		graphcis::MyTexture* packmanTexture = MyResources::Find<graphcis::MyTexture>(L"PackMan");
-		sr->SetTexture(packmanTexture);
+		graphcis::MyTexture* packmanTexture = MyResources::Find<graphcis::MyTexture>(L"Cat");
+		MyAnimator* animator = mPlayer->AddComponent<MyAnimator>();
+		animator->CreateAnimation(L"CatFrontMove", packmanTexture
+			, Vector2(0.0f, 0.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.5f);
 
-		MyGameObject* bg = object::Instantiate<MyGameObject>(enums::eLayerType::BackGround, Vector2::Zero);
+		animator->PlayAnimation(L"CatFrontMove", true);
+		//sr->SetTexture(packmanTexture);
+
+		MyGameObject* bg = object::Instantiate<MyGameObject>(enums::eLayerType::BackGround);
 		MySpriteRenderer* bgSr = bg->AddComponent<MySpriteRenderer>();
 		bgSr->SetSize(Vector2(3.0f, 3.0f));
 
