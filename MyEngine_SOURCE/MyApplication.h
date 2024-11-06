@@ -15,6 +15,8 @@ namespace my
 		void LateUpdate();
 		void Render();
 
+		HDC GetHdc() { return mHdc; }
+
 	private:
 		void ClearRenderTarget();
 		void CopyRenderTarget(HDC sorce, HDC dest);

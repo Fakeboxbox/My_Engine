@@ -7,10 +7,13 @@
 #include "MyTitleScene.h"
 #include "MySceneManager.h"
 #include "MyObject.h"
+#include "MyTexture.h"
+#include "MyResources.h"
 
 namespace my
 {
 	MyPlayScene::MyPlayScene()
+		: bg(nullptr)
 	{
 
 	}
@@ -23,20 +26,11 @@ namespace my
 	void MyPlayScene::Initialize()
 	{
 		{
-			/*bg = new MyPlayer();
-			MyTransform* tr = bg->AddComponent<MyTransform>();
-			tr->SetPos(Vector2(0, 0));
-			tr->SetName(L"TR");
+			bg = object::Instantiate<MyPlayer>(enums::eLayerType::BackGround);
 			MySpriteRenderer* sr = bg->AddComponent<MySpriteRenderer>();
-			sr->SetName(L"SR");
-			sr->ImageLoad(L"C:\\Users\\danpa\\OneDrive\\πŸ≈¡ »≠∏È\\Project\\MyEngine\\Resources\\CloudOcean.png");
 
-			AddGameObject(bg, eLayerType::BackGround);*/
-
-			bg = object::Instantiate<MyPlayer>(enums::eLayerType::BackGround, Vector2(100.0f, 100.0f));
-			MySpriteRenderer* sr = bg->AddComponent<MySpriteRenderer>();
-			sr->ImageLoad(L"C:\\Users\\danpa\\OneDrive\\πŸ≈¡ »≠∏È\\Project\\MyEngine\\Resources\\CloudOcean.png");
-
+			graphcis::MyTexture* bg = MyResources::Find<graphcis::MyTexture>(L"BG");
+			sr->SetTexture(bg);
 		}
 	}
 

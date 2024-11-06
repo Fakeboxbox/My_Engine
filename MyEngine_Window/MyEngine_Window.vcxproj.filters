@@ -21,6 +21,7 @@
     <ClInclude Include="MyTitleScene.h">
       <Filter>Scenes</Filter>
     </ClInclude>
+    <ClInclude Include="MyLoadResources.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MyPlayScene.cpp">

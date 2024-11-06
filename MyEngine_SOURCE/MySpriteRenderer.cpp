@@ -1,13 +1,14 @@
 #include "MySpriteRenderer.h"
 #include "MyGameObject.h"
 #include "MyTransform.h"
+#include "MyTexture.h"
 
 namespace my
 {
 	MySpriteRenderer::MySpriteRenderer()
-		: mImage(nullptr)
-		, mWidth(0)
-		, mHeight(0)
+		: MyComponent()
+		, mTexture(nullptr)
+		, mSize(Vector2::One)
 	{
 
 	}
@@ -34,17 +35,24 @@ namespace my
 
 	void MySpriteRenderer::Render(HDC hdc)
 	{
+		if (mTexture == nullptr) // 텍스처 세팅 해주세요!
+			assert(false);
+
 		MyTransform* tr = GetOwner()->GetComponent<MyTransform>();
 		Vector2 pos = tr->GetPosition();
 
-		Gdiplus::Graphics graphics(hdc);
-		graphics.DrawImage(mImage, Gdiplus::Rect(pos.x, pos.y, mWidth, mHeight));
-	}
-
-	void MySpriteRenderer::ImageLoad(const std::wstring& path)
-	{
-		mImage = Gdiplus::Image::FromFile(path.c_str());
-		mWidth = mImage->GetWidth();
-		mHeight = mImage->GetHeight();
+		if (mTexture->GetTextureType() == graphcis::MyTexture::eTextureType::Bmp)
+		{
+			TransparentBlt(hdc, pos.x, pos.y
+				, mTexture->GetWidth(), mTexture->GetHeight()
+				, mTexture->GetHDC(), 0, 0, mTexture->GetWidth(), mTexture->GetHeight()
+				, RGB(255, 0, 255));
+		}
+		else if (mTexture->GetTextureType() == graphcis::MyTexture::eTextureType::Png)
+		{
+			Gdiplus::Graphics graphics(hdc);
+			graphics.DrawImage(mTexture->GetImage(), 
+				Gdiplus::Rect(pos.x, pos.y, mTexture->GetWidth(), mTexture->GetHeight()));
+		}
 	}
 }

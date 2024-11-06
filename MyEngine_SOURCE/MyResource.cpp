@@ -2,5 +2,14 @@
 
 namespace my
 {
+    MyResource::MyResource(enums::eResourceType Type)
+        : mType(Type)
+    {
 
+    }
+
+    MyResource::~MyResource()
+    {
+
+    }
 }
