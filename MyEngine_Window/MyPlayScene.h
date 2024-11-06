@@ -18,6 +18,6 @@ namespace my
 		void OnExit() override;
 
 	private:
-		class MyPlayer* bg;
+		class MyPlayer* mPlayer;
 	};
 }

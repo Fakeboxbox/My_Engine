@@ -2,6 +2,15 @@
 
 namespace my::enums
 {
+	enum class eComponentType
+	{
+		Transform,
+		SpriteRenderer,
+		Script,
+		Camera,
+		End
+	};
+
 	enum class eLayerType
 	{
 		None,

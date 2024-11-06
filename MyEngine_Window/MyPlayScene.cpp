@@ -9,11 +9,14 @@
 #include "MyObject.h"
 #include "MyTexture.h"
 #include "MyResources.h"
+#include "MyPlayerScript.h"
+#include "MyCamera.h"
+#include "MyRenderer.h"
 
 namespace my
 {
 	MyPlayScene::MyPlayScene()
-		: bg(nullptr)
+		: mPlayer(nullptr)
 	{
 
 	}
@@ -25,13 +28,29 @@ namespace my
 
 	void MyPlayScene::Initialize()
 	{
-		{
-			bg = object::Instantiate<MyPlayer>(enums::eLayerType::BackGround);
-			MySpriteRenderer* sr = bg->AddComponent<MySpriteRenderer>();
+		MyGameObject* camera = object::Instantiate<MyGameObject>(enums::eLayerType::None, Vector2(343.0f, 442.0f));
+		MyCamera* cameraComp = camera->AddComponent<MyCamera>();
+		renderer::mainCamera = cameraComp;
+		//camera->AddComponent<MyPlayerScript>();
 
-			graphcis::MyTexture* bg = MyResources::Find<graphcis::MyTexture>(L"BG");
-			sr->SetTexture(bg);
-		}
+		// 게임오브젝트를 만들기전에 리소스들을 전부 Load해두면 좋다.
+		mPlayer = object::Instantiate<MyPlayer>(enums::eLayerType::Player);
+		MySpriteRenderer* sr = mPlayer->AddComponent<MySpriteRenderer>();
+		sr->SetSize(Vector2(3.0f, 3.0f));
+		mPlayer->AddComponent<MyPlayerScript>();
+
+		graphcis::MyTexture* packmanTexture = MyResources::Find<graphcis::MyTexture>(L"PackMan");
+		sr->SetTexture(packmanTexture);
+
+		MyGameObject* bg = object::Instantiate<MyGameObject>(enums::eLayerType::BackGround, Vector2::Zero);
+		MySpriteRenderer* bgSr = bg->AddComponent<MySpriteRenderer>();
+		bgSr->SetSize(Vector2(3.0f, 3.0f));
+
+		graphcis::MyTexture* bgTexture = MyResources::Find<graphcis::MyTexture>(L"Map");
+		bgSr->SetTexture(bgTexture);
+
+		// 게임 오브젝트 생성후에 레이어와 게임오브젝트들의 init 함수를 호출
+		MyScene::Initialize();
 	}
 
 	void MyPlayScene::Update()
@@ -52,8 +71,8 @@ namespace my
 	void MyPlayScene::Render(HDC hdc)
 	{
 		MyScene::Render(hdc);
-		wchar_t str[50] = L"Play Scene";
-		TextOut(hdc, 0, 16, str, 10);
+		/*wchar_t str[50] = L"Play Scene";
+		TextOut(hdc, 0, 16, str, 10);*/
 	}
 
 	void MyPlayScene::OnEnter()

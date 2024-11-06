@@ -3,6 +3,7 @@
 namespace my
 {
 	MyTransform::MyTransform()
+		: MyComponent(enums::eComponentType::Transform)
 	{
 
 	}

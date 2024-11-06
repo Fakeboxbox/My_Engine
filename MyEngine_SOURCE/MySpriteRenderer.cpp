@@ -2,11 +2,12 @@
 #include "MyGameObject.h"
 #include "MyTransform.h"
 #include "MyTexture.h"
+#include "MyRenderer.h"
 
 namespace my
 {
 	MySpriteRenderer::MySpriteRenderer()
-		: MyComponent()
+		: MyComponent(enums::eComponentType::SpriteRenderer)
 		, mTexture(nullptr)
 		, mSize(Vector2::One)
 	{
@@ -40,11 +41,11 @@ namespace my
 
 		MyTransform* tr = GetOwner()->GetComponent<MyTransform>();
 		Vector2 pos = tr->GetPosition();
-
+		pos = renderer::mainCamera->CalculatePosition(pos);
 		if (mTexture->GetTextureType() == graphcis::MyTexture::eTextureType::Bmp)
 		{
 			TransparentBlt(hdc, pos.x, pos.y
-				, mTexture->GetWidth(), mTexture->GetHeight()
+				, mTexture->GetWidth() * mSize.x, mTexture->GetHeight() * mSize.y
 				, mTexture->GetHDC(), 0, 0, mTexture->GetWidth(), mTexture->GetHeight()
 				, RGB(255, 0, 255));
 		}
@@ -52,7 +53,7 @@ namespace my
 		{
 			Gdiplus::Graphics graphics(hdc);
 			graphics.DrawImage(mTexture->GetImage(), 
-				Gdiplus::Rect(pos.x, pos.y, mTexture->GetWidth(), mTexture->GetHeight()));
+				Gdiplus::Rect(pos.x, pos.y, mTexture->GetWidth() * mSize.x, mTexture->GetHeight() * mSize.y));
 		}
 	}
 }

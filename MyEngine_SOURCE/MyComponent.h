@@ -7,7 +7,7 @@ namespace my
 	class MyComponent : public MyEntity
 	{
 	public:
-		MyComponent();
+		MyComponent(enums::eComponentType Type);
 		~MyComponent();
 
 		virtual void Initialize();
@@ -17,9 +17,11 @@ namespace my
 
 		void SetOwner(MyGameObject* owner) { mOwner = owner; }
 		MyGameObject* GetOwner() { return mOwner; }
+		enums::eComponentType GetType() { return mType; }
 
 	private:
 		MyGameObject* mOwner;
+		enums::eComponentType mType;
 	};
 }
 

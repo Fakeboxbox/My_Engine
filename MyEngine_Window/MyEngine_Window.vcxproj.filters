@@ -7,6 +7,9 @@
     <Filter Include="Contents">
       <UniqueIdentifier>{0833ebb5-6de7-4a95-8eed-3ee257da244c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Scripts">
+      <UniqueIdentifier>{fe8f213c-ddcc-4430-aaad-6195f1458183}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MyLoadScenes.h">
@@ -22,6 +25,9 @@
       <Filter>Scenes</Filter>
     </ClInclude>
     <ClInclude Include="MyLoadResources.h" />
+    <ClInclude Include="MyPlayerScript.h">
+      <Filter>Scripts</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MyPlayScene.cpp">
@@ -32,6 +38,9 @@
     </ClCompile>
     <ClCompile Include="MyTitleScene.cpp">
       <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="MyPlayerScript.cpp">
+      <Filter>Scripts</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

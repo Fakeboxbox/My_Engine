@@ -2,7 +2,9 @@
 
 namespace my
 {
-	MyComponent::MyComponent()
+	MyComponent::MyComponent(enums::eComponentType Type)
+		: mOwner(nullptr)
+		, mType(Type)
 	{
 
 	}

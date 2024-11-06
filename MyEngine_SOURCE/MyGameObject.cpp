@@ -5,6 +5,7 @@ namespace my
 {
 	MyGameObject::MyGameObject()
 	{
+		mComponents.resize((UINT)enums::eComponentType::End);
 		initializeTransform();
 	}
 
@@ -21,6 +22,9 @@ namespace my
 	{
 		for (MyComponent* comp : mComponents)
 		{
+			if (comp == nullptr)
+				continue;
+
 			comp->Initialize();
 		}
 	}
@@ -29,6 +33,9 @@ namespace my
 	{
 		for (MyComponent* comp : mComponents)
 		{
+			if (comp == nullptr)
+				continue;
+
 			comp->Update();
 		}
 	}
@@ -37,6 +44,9 @@ namespace my
 	{
 		for (MyComponent* comp : mComponents)
 		{
+			if (comp == nullptr)
+				continue;
+
 			comp->LateUpdate();
 		}
 	}
@@ -45,6 +55,9 @@ namespace my
 	{
 		for (MyComponent* comp : mComponents)
 		{
+			if (comp == nullptr)
+				continue;
+
 			comp->Render(hdc);
 		}
 	}

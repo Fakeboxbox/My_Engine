@@ -16,6 +16,7 @@
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)CommonInclude.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MyApplication.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MyCamera.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MyComponent.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MyEntity.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MyEnums.h" />
@@ -24,10 +25,12 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)MyLayer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MyMath.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MyObject.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MyRenderer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MyResource.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MyResources.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MyScene.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MySceneManager.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MyScript.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MySpriteRenderer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MyTexture.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MyTime.h" />
@@ -35,16 +38,19 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)MyApplication.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MyCamera.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MyComponent.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MyEntity.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MyGameObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MyInput.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MyLayer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MyMath.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MyRenderer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MyResource.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MyResources.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MyScene.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MySceneManager.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MyScript.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MySpriteRenderer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MyTexture.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MyTime.cpp" />
