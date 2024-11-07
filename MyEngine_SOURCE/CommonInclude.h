@@ -7,6 +7,7 @@
 #include <algorithm>
 #include <string>
 #include <map>
+#include <functional>
 
 #include "MyMath.h"
 #include <mmsystem.h>

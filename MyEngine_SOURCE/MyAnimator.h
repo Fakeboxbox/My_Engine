@@ -7,6 +7,29 @@ namespace my
 	class MyAnimator : public MyComponent
 	{
 	public:
+		struct Event
+		{
+			void operator=(std::function<void()> func)
+			{
+				mEvent = std::move(func);
+			}
+
+			void operator()()
+			{
+				if (mEvent)
+					mEvent;
+			}
+
+			std::function<void()> mEvent;
+		};
+
+		struct Events
+		{
+			Event mStartEvent;
+			Event mCompleteEvent;
+			Event mEndEvent;
+		};
+
 		MyAnimator();
 		~MyAnimator();
 
@@ -26,9 +49,14 @@ namespace my
 		MyAnimation* FindAnimation(const std::wstring& name);
 		void PlayAnimation(const std::wstring& name, bool loop = true);
 
+		bool IsCompleteAnimation() { return mActiveAnimation->IsComplete(); }
+
 	private:
 		std::map<std::wstring, MyAnimation*> mAnimations;
 		MyAnimation* mActiveAnimation;
 		bool mbLoop;
+
+		//Event
+		std::map<std::wstring, Events*> mEvents;
 	};
 }

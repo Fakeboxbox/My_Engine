@@ -17,6 +17,7 @@ namespace my::enums
 		None,
 		BackGround,
 		Player,
+		Animal,
 		particle,
 		// etc...
 		Max = 16

@@ -8,7 +8,7 @@
 namespace my
 {
 	MyPlayerScript::MyPlayerScript()
-		: mState(eState::SitDown)
+		: mState(eState::Idle)
 		, mAnimator(nullptr)
 	{
 
@@ -31,8 +31,8 @@ namespace my
 
 		switch (mState)
 		{
-		case my::MyPlayerScript::eState::SitDown:
-			sitDown();
+		case my::MyPlayerScript::eState::Idle:
+			idle();
 			break;
 
 		case my::MyPlayerScript::eState::Walk:
@@ -42,44 +42,16 @@ namespace my
 		case my::MyPlayerScript::eState::Sleep:
 			break;
 
+		case my::MyPlayerScript::eState::GiveWater:
+			giveWater();
+			break;
+
 		case my::MyPlayerScript::eState::Attack:
 			break;
 
 		default:
 			break;
 		}
-
-		/*if (MyInput::GetKey(eKeyCode::Right))
-		{
-			MyTransform* tr = GetOwner()->GetComponent<MyTransform>();
-			Vector2 pos = tr->GetPosition();
-			pos.x += 100.0f * MyTime::DeltaTime();
-			tr->SetPos(pos);
-		}
-
-		if (MyInput::GetKey(eKeyCode::Left))
-		{
-			MyTransform* tr = GetOwner()->GetComponent<MyTransform>();
-			Vector2 pos = tr->GetPosition();
-			pos.x -= 100.0f * MyTime::DeltaTime();
-			tr->SetPos(pos);
-		}
-
-		if (MyInput::GetKey(eKeyCode::Up))
-		{
-			MyTransform* tr = GetOwner()->GetComponent<MyTransform>();
-			Vector2 pos = tr->GetPosition();
-			pos.y -= 100.0f * MyTime::DeltaTime();
-			tr->SetPos(pos);
-		}
-
-		if (MyInput::GetKey(eKeyCode::Down))
-		{
-			MyTransform* tr = GetOwner()->GetComponent<MyTransform>();
-			Vector2 pos = tr->GetPosition();
-			pos.y += 100.0f * MyTime::DeltaTime();
-			tr->SetPos(pos);
-		}*/
 	}
 
 	void MyPlayerScript::LateUpdate()
@@ -92,28 +64,16 @@ namespace my
 
 	}
 
-	void MyPlayerScript::sitDown()
+	void MyPlayerScript::idle()
 	{
-		if (MyInput::GetKey(eKeyCode::Right))
+		if (MyInput::GetKey(eKeyCode::LButton))
 		{
-			mState = MyPlayerScript::eState::Walk;
-			mAnimator->PlayAnimation(L"RightWalk", true);
+			mState = MyPlayerScript::eState::GiveWater;
+			mAnimator->PlayAnimation(L"FrontGiveWater", false);
+
+			Vector2 mousePos = MyInput::GetMousePosition();
 		}
-		if (MyInput::GetKey(eKeyCode::Left))
-		{
-			mState = MyPlayerScript::eState::Walk;
-			mAnimator->PlayAnimation(L"LeftWalk", true);
-		}
-		if (MyInput::GetKey(eKeyCode::Up))
-		{
-			mState = MyPlayerScript::eState::Walk;
-			mAnimator->PlayAnimation(L"UpWalk", true);
-		}
-		if (MyInput::GetKey(eKeyCode::Down))
-		{
-			mState = MyPlayerScript::eState::Walk;
-			mAnimator->PlayAnimation(L"DownWalk", true);
-		}
+		
 	}
 
 	void MyPlayerScript::move()
@@ -143,8 +103,17 @@ namespace my
 		if (MyInput::GetKeyUp(eKeyCode::Right) || MyInput::GetKeyUp(eKeyCode::Left)
 			 || MyInput::GetKeyUp(eKeyCode::Up) || MyInput::GetKeyUp(eKeyCode::Down))
 		{
-			mState = MyPlayerScript::eState::SitDown;
-			mAnimator->PlayAnimation(L"SitDown", false);
+			mState = MyPlayerScript::eState::Idle;
+			mAnimator->PlayAnimation(L"Idle", false);
+		}
+	}
+
+	void MyPlayerScript::giveWater()
+	{
+		if (mAnimator->IsCompleteAnimation())
+		{
+			mState = MyPlayerScript::eState::Idle;
+			mAnimator->PlayAnimation(L"Idle", false);
 		}
 	}
 }

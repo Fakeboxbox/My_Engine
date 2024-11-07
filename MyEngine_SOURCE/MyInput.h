@@ -17,6 +17,7 @@ namespace my
 		A, S, D, F, G, H, J, K, L, Z,
 		X, C, V, B, N, M, 
 		Left, Right, Down, Up,
+		LButton, MButton, RButton,
 		End
 	};
 
@@ -36,6 +37,7 @@ namespace my
 		static bool GetKey(eKeyCode keycode) { return Keys[(UINT)keycode].state == eKeyState::Pressed; }
 		static bool GetKeyDown(eKeyCode keycode) { return Keys[(UINT)keycode].state == eKeyState::Down; }
 		static bool GetKeyUp(eKeyCode keycode) { return Keys[(UINT)keycode].state == eKeyState::Up; }
+		static math::Vector2 GetMousePosition() { return mMousePositon; }
 
 	private:
 		static void CreateKeys();
@@ -44,9 +46,12 @@ namespace my
 		static bool IsKeyDown(eKeyCode keycode);
 		static void UpdateKeyDown(MyInput::Key& key);
 		static void UpdateKeyUp(MyInput::Key& key);
+		static void GetMousePostionByWindow();
+		static void ClearKeys();
 
 	private:
 		static std::vector<Key> Keys;
+		static math::Vector2 mMousePositon;
 	};
 }
 

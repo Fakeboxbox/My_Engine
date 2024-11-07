@@ -8,9 +8,10 @@ namespace my
 	public:
 		enum class eState
 		{
-			SitDown,
+			Idle,
 			Walk,
 			Sleep,
+			GiveWater,
 			Attack
 		};
 
@@ -23,12 +24,17 @@ namespace my
 		void Render(HDC hdc) override;
 		
 	private:
-		void sitDown();
+		void idle();
 		void move();
+		void giveWater();
 
 	private:
 		eState mState;
 		class MyAnimator* mAnimator;
+
+		void (*StartEvent)();
+		void (*CompleteEvent)();
+		void (*EndEvent)();
 	};
 }
 

@@ -36,53 +36,26 @@ namespace my
 		MyCamera* cameraComp = camera->AddComponent<MyCamera>();
 		renderer::mainCamera = cameraComp;
 
-		mPlayer = object::Instantiate<MyPlayer>(enums::eLayerType::particle);
-		//MySpriteRenderer* sr = mPlayer->AddComponent<MySpriteRenderer>();
-		//sr->SetSize(Vector2(3.0f, 3.0f));
+		//Player
+		mPlayer = object::Instantiate<MyPlayer>(enums::eLayerType::Player);
 		mPlayer->AddComponent<MyPlayerScript>();
 
-		//graphcis::MyTexture* packmanTexture = MyResources::Find<graphcis::MyTexture>(L"MapleEffect");
-		//MyAnimator* animator = mPlayer->AddComponent<MyAnimator>();
-		//animator->CreateAnimation(L"CatFrontMove", packmanTexture
-		//	, Vector2(0.0f, 0.0f), Vector2(386.0f, 246.0f), Vector2::Zero, 8, 0.1f);
-		//animator->PlayAnimation(L"CatFrontMove", true);
-
-		graphcis::MyTexture* packmanTexture = MyResources::Find<graphcis::MyTexture>(L"Cat");
+		graphcis::MyTexture* playerTexture = MyResources::Find<graphcis::MyTexture>(L"Player");
 		MyAnimator* animator = mPlayer->AddComponent<MyAnimator>();
 		
-		animator->CreateAnimation(L"DownWalk", packmanTexture
-			, Vector2(0.0f, 0.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+		animator->CreateAnimation(L"Idle", playerTexture
+			, Vector2(2000.0f, 250.0f), Vector2(250.0f, 250.0f), Vector2::Zero, 1, 0.1f);
 
-		animator->CreateAnimation(L"RightWalk", packmanTexture
-			, Vector2(0.0f, 32.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+		animator->CreateAnimation(L"FrontGiveWater", playerTexture
+			, Vector2(0.0f, 2000.0f), Vector2(250.0f, 250.0f), Vector2::Zero, 12, 0.1f);
 
-		animator->CreateAnimation(L"UpWalk", packmanTexture
-			, Vector2(0.0f, 64.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
-
-		animator->CreateAnimation(L"LeftWalk", packmanTexture
-			, Vector2(0.0f, 96.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
-
-		animator->CreateAnimation(L"SitDown", packmanTexture
-			, Vector2(0.0f, 128.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
-
-		animator->CreateAnimation(L"Grooming", packmanTexture
-			, Vector2(0.0f, 160.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
-
-		animator->PlayAnimation(L"SitDown", false);
+		animator->PlayAnimation(L"Idle", false);
 
 		mPlayer->GetComponent<MyTransform>()->SetPos(Vector2(100.0f, 100.0f));
-		mPlayer->GetComponent<MyTransform>()->SetScale(Vector2(2.0f, 2.0f));
-		//mPlayer->GetComponent<MyTransform>()->SetRotation(30.0f);
-		//sr->SetTexture(packmanTexture);
 
-		//MyGameObject* bg = object::Instantiate<MyGameObject>(enums::eLayerType::Player);
-		//MySpriteRenderer* bgSr = bg->AddComponent<MySpriteRenderer>();
-		//bgSr->SetSize(Vector2(3.0f, 3.0f));
 
-		//graphcis::MyTexture* bgTexture = MyResources::Find<graphcis::MyTexture>(L"Bubble");
-		//bgSr->SetTexture(bgTexture);
-
-		MyCat* cat = object::Instantiate<MyCat>(enums::eLayerType::particle);
+		//Cat
+		MyCat* cat = object::Instantiate<MyCat>(enums::eLayerType::Animal);
 		cat->AddComponent<MyCatScript>();
 
 		graphcis::MyTexture* CatTexture = MyResources::Find<graphcis::MyTexture>(L"Cat");
