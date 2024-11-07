@@ -13,6 +13,8 @@
 #include "MyCamera.h"
 #include "MyRenderer.h"
 #include "MyAnimator.h"
+#include "MyCat.h"
+#include "MyCatScript.h"
 
 namespace my
 {
@@ -29,11 +31,11 @@ namespace my
 
 	void MyPlayScene::Initialize()
 	{
+		// 게임오브젝트를 만들기전에 리소스들을 전부 Load해두면 좋다.
 		MyGameObject* camera = object::Instantiate<MyGameObject>(enums::eLayerType::None, Vector2(343.0f, 442.0f));
 		MyCamera* cameraComp = camera->AddComponent<MyCamera>();
 		renderer::mainCamera = cameraComp;
 
-		// 게임오브젝트를 만들기전에 리소스들을 전부 Load해두면 좋다.
 		mPlayer = object::Instantiate<MyPlayer>(enums::eLayerType::particle);
 		//MySpriteRenderer* sr = mPlayer->AddComponent<MySpriteRenderer>();
 		//sr->SetSize(Vector2(3.0f, 3.0f));
@@ -73,12 +75,44 @@ namespace my
 		//mPlayer->GetComponent<MyTransform>()->SetRotation(30.0f);
 		//sr->SetTexture(packmanTexture);
 
-		MyGameObject* bg = object::Instantiate<MyGameObject>(enums::eLayerType::Player);
-		MySpriteRenderer* bgSr = bg->AddComponent<MySpriteRenderer>();
+		//MyGameObject* bg = object::Instantiate<MyGameObject>(enums::eLayerType::Player);
+		//MySpriteRenderer* bgSr = bg->AddComponent<MySpriteRenderer>();
 		//bgSr->SetSize(Vector2(3.0f, 3.0f));
 
-		graphcis::MyTexture* bgTexture = MyResources::Find<graphcis::MyTexture>(L"Bubble");
-		bgSr->SetTexture(bgTexture);
+		//graphcis::MyTexture* bgTexture = MyResources::Find<graphcis::MyTexture>(L"Bubble");
+		//bgSr->SetTexture(bgTexture);
+
+		MyCat* cat = object::Instantiate<MyCat>(enums::eLayerType::particle);
+		cat->AddComponent<MyCatScript>();
+
+		graphcis::MyTexture* CatTexture = MyResources::Find<graphcis::MyTexture>(L"Cat");
+		MyAnimator* catAnimator = cat->AddComponent<MyAnimator>();
+
+		catAnimator->CreateAnimation(L"DownWalk", CatTexture
+			, Vector2(0.0f, 0.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+
+		catAnimator->CreateAnimation(L"RightWalk", CatTexture
+			, Vector2(0.0f, 32.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+
+		catAnimator->CreateAnimation(L"UpWalk", CatTexture
+			, Vector2(0.0f, 64.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+
+		catAnimator->CreateAnimation(L"LeftWalk", CatTexture
+			, Vector2(0.0f, 96.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+
+		catAnimator->CreateAnimation(L"SitDown", CatTexture
+			, Vector2(0.0f, 128.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+
+		catAnimator->CreateAnimation(L"Grooming", CatTexture
+			, Vector2(0.0f, 160.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+
+		catAnimator->CreateAnimation(L"LayDown", CatTexture
+			, Vector2(0.0f, 192.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+
+		catAnimator->PlayAnimation(L"SitDown", false);
+
+		cat->GetComponent<MyTransform>()->SetPos(Vector2(200.0f, 200.0f));
+		cat->GetComponent<MyTransform>()->SetScale(Vector2(2.0f, 2.0f));
 
 		// 게임 오브젝트 생성후에 레이어와 게임오브젝트들의 init 함수를 호출
 		MyScene::Initialize();
