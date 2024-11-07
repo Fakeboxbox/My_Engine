@@ -40,6 +40,7 @@ namespace my
 		if (mAnimationSheet[mIndex].duration < mTime)
 		{
 			mTime = 0.0f;
+
 			if (mIndex < mAnimationSheet.size() - 1)
 				mIndex++;
 			else
@@ -57,29 +58,65 @@ namespace my
 		MyGameObject* gameObj = mAnimator->GetOwner();
 		MyTransform* tr = gameObj->GetComponent<MyTransform>();
 		Vector2 pos = tr->GetPosition();
+		float rot = tr->GetRotation();
+		Vector2 scale = tr->GetScale();
 
 		if (renderer::mainCamera)
 			pos = renderer::mainCamera->CalculatePosition(pos);
 
-		BLENDFUNCTION func = {};
-		func.BlendOp = AC_SRC_OVER;
-		func.BlendFlags = 0;
-		func.AlphaFormat = AC_SRC_ALPHA;
-		func.SourceConstantAlpha = 125;	// 0(transparent) ~ 255(opaque)
-
+		graphcis::MyTexture::eTextureType type = mTexture->GetTextureType();
 		Sprite sprite = mAnimationSheet[mIndex];
-		HDC imgHdc = mTexture->GetHdc();
 
-		AlphaBlend(hdc
-			, pos.x, pos.y
-			, sprite.size.x * 5
-			, sprite.size.y * 5
-			, imgHdc
-			, sprite.leftTop.x
-			, sprite.leftTop.y
-			, sprite.size.x
-			, sprite.size.y
-			, func);
+		if (type == graphcis::MyTexture::eTextureType::Bmp)
+		{
+			BLENDFUNCTION func = {};
+			func.BlendOp = AC_SRC_OVER;
+			func.BlendFlags = 0;
+			func.AlphaFormat = AC_SRC_ALPHA;
+			func.SourceConstantAlpha = 255;	// 0(transparent) ~ 255(opaque)
+
+			HDC imgHdc = mTexture->GetHdc();
+
+			AlphaBlend(hdc
+				, pos.x - (sprite.size.x / 2.0f)
+				, pos.y - (sprite.size.y / 2.0f)
+				, sprite.size.x * scale.x
+				, sprite.size.y * scale.y
+				, imgHdc
+				, sprite.leftTop.x
+				, sprite.leftTop.y
+				, sprite.size.x
+				, sprite.size.y
+				, func);
+		}
+		else if (type == graphcis::MyTexture::eTextureType::Png)
+		{
+			Gdiplus::ImageAttributes imgAtt = {};
+			imgAtt.SetColorKey(Gdiplus::Color(100, 100, 100), Gdiplus::Color(255, 255, 255));
+
+			Gdiplus::Graphics graphics(hdc);
+
+			graphics.TranslateTransform(pos.x, pos.y);
+			graphics.RotateTransform(rot);
+			graphics.TranslateTransform(-pos.x, -pos.y);
+
+			graphics.DrawImage(mTexture->GetImage()
+
+				, Gdiplus::Rect
+				(
+					  pos.x - (sprite.size.x / 2.0f)
+					, pos.y - (sprite.size.y / 2.0f)
+					, sprite.size.x * scale.x
+					, sprite.size.y * scale.y
+				)
+				, sprite.leftTop.x
+				, sprite.leftTop.y
+				, sprite.size.x
+				, sprite.size.y
+				, Gdiplus::UnitPixel
+				, nullptr
+			);
+		}
 	}
 
 	void MyAnimation::CreateAnimation(const std::wstring& name, graphcis::MyTexture* spriteSheet
