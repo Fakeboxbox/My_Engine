@@ -2,6 +2,7 @@
 #include "MyInput.h"
 #include "MyTime.h"
 #include "MySceneManager.h"
+#include "MyResources.h"
 
 namespace my
 {
@@ -58,6 +59,12 @@ namespace my
 		MySceneManager::Render(mBackHdc);
 
 		CopyRenderTarget(mBackHdc, mHdc);
+	}
+
+	void MyApplication::Release()
+	{
+		MySceneManager::Release();
+		MyResources::Release();
 	}
 
 	void MyApplication::ClearRenderTarget()

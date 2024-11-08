@@ -15,7 +15,11 @@ namespace my
 
 	MyScene::~MyScene()
 	{
-
+		for ( MyLayer* layer : mLayers)
+		{
+			delete layer;
+			layer = nullptr;
+		}
 	}
 
 	void MyScene::Initialize()

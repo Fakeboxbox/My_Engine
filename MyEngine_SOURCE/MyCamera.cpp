@@ -35,9 +35,12 @@ namespace my
 			MyTransform* tr = mTarget->GetComponent<MyTransform>();
 			mLookPosition = tr->GetPosition();
 		}
+		else
+		{
+			MyTransform* cameraTr = GetOwner()->GetComponent<MyTransform>();
+			mLookPosition = cameraTr->GetPosition();
+		}
 
-		MyTransform* cameraTr = GetOwner()->GetComponent<MyTransform>();
-		mLookPosition = cameraTr->GetPosition();
 		mDistance = mLookPosition - (mResolution / 2.0f);
 	}
 

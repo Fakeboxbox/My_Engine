@@ -38,18 +38,20 @@ namespace my
 
 		//Player
 		mPlayer = object::Instantiate<MyPlayer>(enums::eLayerType::Player);
-		mPlayer->AddComponent<MyPlayerScript>();
+		MyPlayerScript* plScript = mPlayer->AddComponent<MyPlayerScript>();
 
 		graphcis::MyTexture* playerTexture = MyResources::Find<graphcis::MyTexture>(L"Player");
-		MyAnimator* animator = mPlayer->AddComponent<MyAnimator>();
+		MyAnimator* playerAnimator = mPlayer->AddComponent<MyAnimator>();
 		
-		animator->CreateAnimation(L"Idle", playerTexture
+		playerAnimator->CreateAnimation(L"Idle", playerTexture
 			, Vector2(2000.0f, 250.0f), Vector2(250.0f, 250.0f), Vector2::Zero, 1, 0.1f);
 
-		animator->CreateAnimation(L"FrontGiveWater", playerTexture
+		playerAnimator->CreateAnimation(L"FrontGiveWater", playerTexture
 			, Vector2(0.0f, 2000.0f), Vector2(250.0f, 250.0f), Vector2::Zero, 12, 0.1f);
 
-		animator->PlayAnimation(L"Idle", false);
+		playerAnimator->PlayAnimation(L"Idle", false);
+
+		playerAnimator->GetCompleteEvent(L"FrontGiveWater") = std::bind(&MyPlayerScript::AttackEffect, plScript);
 
 		mPlayer->GetComponent<MyTransform>()->SetPos(Vector2(100.0f, 100.0f));
 
@@ -57,6 +59,7 @@ namespace my
 		//Cat
 		MyCat* cat = object::Instantiate<MyCat>(enums::eLayerType::Animal);
 		cat->AddComponent<MyCatScript>();
+		cameraComp->SetTarget(cat);
 
 		graphcis::MyTexture* CatTexture = MyResources::Find<graphcis::MyTexture>(L"Cat");
 		MyAnimator* catAnimator = cat->AddComponent<MyAnimator>();

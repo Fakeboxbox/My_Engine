@@ -22,6 +22,8 @@ namespace my
 		void Update() override;
 		void LateUpdate() override;
 		void Render(HDC hdc) override;
+
+		void AttackEffect();
 		
 	private:
 		void idle();
@@ -31,10 +33,6 @@ namespace my
 	private:
 		eState mState;
 		class MyAnimator* mAnimator;
-
-		void (*StartEvent)();
-		void (*CompleteEvent)();
-		void (*EndEvent)();
 	};
 }
 

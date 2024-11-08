@@ -10,7 +10,14 @@ namespace my
 
 	MyLayer::~MyLayer()
 	{
+		for (MyGameObject* gameObj : mGameObjects)
+		{
+			if (gameObj == nullptr)
+				continue;
 
+			delete gameObj;
+			gameObj = nullptr;
+		}
 	}
 
 	void MyLayer::Initialize()

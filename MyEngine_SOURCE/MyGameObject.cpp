@@ -13,6 +13,9 @@ namespace my
 	{
 		for (MyComponent* comp : mComponents)
 		{
+			if (comp == nullptr)
+				continue;
+
 			delete comp;
 			comp = nullptr;
 		}

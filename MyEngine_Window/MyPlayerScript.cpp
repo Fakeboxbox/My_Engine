@@ -4,6 +4,10 @@
 #include "MyTime.h"
 #include "MyGameObject.h"
 #include "MyAnimator.h"
+#include "MyCat.h"
+#include "MyCatScript.h"
+#include "MyObject.h"
+#include "MyResources.h"
 
 namespace my
 {
@@ -62,6 +66,42 @@ namespace my
 	void MyPlayerScript::Render(HDC hdc)
 	{
 
+	}
+
+	void MyPlayerScript::AttackEffect()
+	{
+		//Cat
+		MyCat* cat = object::Instantiate<MyCat>(enums::eLayerType::Animal);
+		cat->AddComponent<MyCatScript>();
+
+		graphcis::MyTexture* CatTexture = MyResources::Find<graphcis::MyTexture>(L"Cat");
+		MyAnimator* catAnimator = cat->AddComponent<MyAnimator>();
+
+		catAnimator->CreateAnimation(L"DownWalk", CatTexture
+			, Vector2(0.0f, 0.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+
+		catAnimator->CreateAnimation(L"RightWalk", CatTexture
+			, Vector2(0.0f, 32.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+
+		catAnimator->CreateAnimation(L"UpWalk", CatTexture
+			, Vector2(0.0f, 64.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+
+		catAnimator->CreateAnimation(L"LeftWalk", CatTexture
+			, Vector2(0.0f, 96.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+
+		catAnimator->CreateAnimation(L"SitDown", CatTexture
+			, Vector2(0.0f, 128.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+
+		catAnimator->CreateAnimation(L"Grooming", CatTexture
+			, Vector2(0.0f, 160.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+
+		catAnimator->CreateAnimation(L"LayDown", CatTexture
+			, Vector2(0.0f, 192.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+
+		catAnimator->PlayAnimation(L"SitDown", false);
+
+		cat->GetComponent<MyTransform>()->SetPos(Vector2(200.0f, 200.0f));
+		cat->GetComponent<MyTransform>()->SetScale(Vector2(2.0f, 2.0f));
 	}
 
 	void MyPlayerScript::idle()
