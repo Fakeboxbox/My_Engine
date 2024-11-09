@@ -15,6 +15,7 @@ namespace my
 		virtual void Update();
 		virtual void LateUpdate();
 		virtual void Render(HDC hdc);
+		virtual void Destroy();
 
 		void AddGameObject(MyGameObject* gameObject);
 
@@ -22,6 +23,8 @@ namespace my
 		//eLayerType mType;
 		std::vector<MyGameObject*> mGameObjects;
 	};
+
+	typedef std::vector<MyGameObject*>::iterator GameObjectIter;
 }
 
 

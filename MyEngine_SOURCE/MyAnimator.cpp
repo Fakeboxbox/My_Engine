@@ -1,4 +1,6 @@
 #include "MyAnimator.h"
+#include "MyResources.h"
+#include "MyTexture.h"
 
 namespace my
 {
@@ -83,6 +85,45 @@ namespace my
 		mEvents.insert(std::make_pair(name, events));
 
 		mAnimations.insert(std::make_pair(name, animation));
+	}
+
+	void MyAnimator::CreateAnimationByFolder(const std::wstring& name, const std::wstring& path, Vector2 offset, float duration)
+	{
+		MyAnimation* animation = nullptr;
+		animation = FindAnimation(name);
+		if (animation != nullptr)
+			return;
+
+		int fileCount = 0;
+		std::filesystem::path fs(path);
+		std::vector<graphcis::MyTexture*> images = {};
+
+		for ( auto& p : std::filesystem::recursive_directory_iterator(fs))
+		{
+			std::wstring fileName = p.path().filename();
+			std::wstring fullName = p.path();
+
+			graphcis::MyTexture* texture = MyResources::Load<graphcis::MyTexture>(fileName, fullName);
+			images.push_back(texture);
+			fileCount++;
+		}
+		UINT sheetWidth = images[0]->GetWidth() * fileCount;
+		UINT sheetHeight = images[0]->GetHeight();
+		graphcis::MyTexture* spriteSheet = graphcis::MyTexture::Create(name, sheetWidth, sheetHeight);
+
+		UINT imageWidth = images[0]->GetWidth();
+		UINT imageHeight = images[0]->GetHeight();
+
+		for (size_t i = 0; i < images.size(); i++)
+		{
+			BitBlt(spriteSheet->GetHdc(), i * imageWidth, 0
+				, imageWidth, imageHeight
+				, images[i]->GetHdc(), 0, 0, SRCCOPY);
+		}
+
+		CreateAnimation(name, spriteSheet
+			, Vector2(0.0f, 0.0f), Vector2(imageWidth, imageHeight)
+			, offset, fileCount, duration);
 	}
 
 	MyAnimation* MyAnimator::FindAnimation(const std::wstring& name)

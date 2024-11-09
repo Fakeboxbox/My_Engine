@@ -74,6 +74,19 @@ namespace my
 		}
 	}
 
+	void MyScene::Destroy()
+	{
+		for (MyLayer* layer : mLayers)
+		{
+			if (layer == nullptr)
+			{
+				continue;
+			}
+
+			layer->Destroy();
+		}
+	}
+
 	void MyScene::OnEnter()
 	{
 

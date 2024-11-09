@@ -14,6 +14,7 @@ namespace my
 		void Update();
 		void LateUpdate();
 		void Render();
+		void Destory();
 		void Release();
 
 		HDC GetHdc() { return mHdc; }

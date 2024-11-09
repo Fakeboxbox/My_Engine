@@ -1,12 +1,39 @@
 #include "MyTexture.h"
 #include "MyApplication.h"
+#include "MyResources.h"
 
 extern my::MyApplication application;	// extern: 해당 전역변수가 존재함을 알리는 키워드
 
 namespace my::graphcis
 {
+	MyTexture* MyTexture::Create(const std::wstring& name, UINT width, UINT height)
+	{
+		MyTexture* image = MyResources::Find<MyTexture>(name);
+		if (image)
+			return image;
+
+		image = new MyTexture();
+		image->SetName(name);
+		image->SetWidth(width);
+		image->SetHeight(height);
+
+		HDC hdc = application.GetHdc();
+		HWND hwnd = application.GetHwnd();
+
+		image->mBitmap = CreateCompatibleBitmap(hdc, width, height);
+		image->mHdc = CreateCompatibleDC(hdc);
+
+		HBITMAP oldBitmap = (HBITMAP)SelectObject(image->mHdc, image->mBitmap);
+		DeleteObject(oldBitmap);
+
+		MyResources::Insert(name, image);
+
+		return image;
+	}
+
 	MyTexture::MyTexture()
 		: MyResource(enums::eResourceType::Texture)
+		, mbAlpha(false)
 	{
 
 	}
@@ -34,6 +61,11 @@ namespace my::graphcis
 
 			mWidth = info.bmWidth;
 			mHeight = info.bmHeight;
+
+			if (info.bmBitsPixel == 32)
+				mbAlpha = true;
+			if (info.bmBitsPixel == 24)
+				mbAlpha = false;
 
 			HDC mainDC = application.GetHdc();
 			mHdc = CreateCompatibleDC(mainDC);

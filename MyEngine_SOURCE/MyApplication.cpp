@@ -36,6 +36,7 @@ namespace my
 		Update();
 		LateUpdate();
 		Render();
+		Destory();
 	}
 
 	void MyApplication::Update()
@@ -61,6 +62,11 @@ namespace my
 		CopyRenderTarget(mBackHdc, mHdc);
 	}
 
+	void MyApplication::Destory()
+	{
+		MySceneManager::Destroy();
+	}
+
 	void MyApplication::Release()
 	{
 		MySceneManager::Release();
@@ -82,7 +88,7 @@ namespace my
 		mHwnd = hwnd;
 		mHdc = GetDC(hwnd);
 
-		RECT rect = { 0, 0, width, height };
+		RECT rect = { 0, 0, (LONG)width, (LONG)height };
 		AdjustWindowRect(&rect, WS_OVERLAPPEDWINDOW, false);
 
 		mWidth = rect.right - rect.left;

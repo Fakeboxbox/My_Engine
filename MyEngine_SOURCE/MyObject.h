@@ -31,4 +31,9 @@ namespace my::object
 
 		return gameObject;
 	}
+
+	static void Destory(MyGameObject* obj)
+	{
+		obj->Death();
+	}
 }

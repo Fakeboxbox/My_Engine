@@ -24,8 +24,8 @@ namespace my
 
 	void MyCamera::Initialize()
 	{
-		mResolution.x = application.GetWidth();
-		mResolution.y = application.GetHeight();
+		mResolution.x = (float)application.GetWidth();
+		mResolution.y = (float)application.GetHeight();
 	}
 
 	void MyCamera::Update()

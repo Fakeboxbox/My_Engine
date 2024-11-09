@@ -4,6 +4,7 @@
 #include "MyTime.h"
 #include "MyGameObject.h"
 #include "MyAnimator.h"
+#include "MyObject.h"
 
 namespace my
 {
@@ -12,6 +13,7 @@ namespace my
 		, mAnimator(nullptr)
 		, mTime(0.0f)
 		, mDirection(eDirection::End)
+		, mDeathTime(0.0f)
 	{
 
 	}
@@ -28,6 +30,13 @@ namespace my
 
 	void MyCatScript::Update()
 	{
+		mDeathTime += MyTime::DeltaTime();
+		if (mDeathTime > 6.0f)
+		{
+			object::Destory(GetOwner());
+		}
+
+
 		if (mAnimator == nullptr)
 			mAnimator = GetOwner()->GetComponent<MyAnimator>();
 

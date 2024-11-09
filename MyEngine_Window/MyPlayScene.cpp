@@ -58,13 +58,14 @@ namespace my
 
 		//Cat
 		MyCat* cat = object::Instantiate<MyCat>(enums::eLayerType::Animal);
+		//cat->SetActive(true);
 		cat->AddComponent<MyCatScript>();
-		cameraComp->SetTarget(cat);
+		//cameraComp->SetTarget(cat);
 
 		graphcis::MyTexture* CatTexture = MyResources::Find<graphcis::MyTexture>(L"Cat");
 		MyAnimator* catAnimator = cat->AddComponent<MyAnimator>();
 
-		catAnimator->CreateAnimation(L"DownWalk", CatTexture
+		/*catAnimator->CreateAnimation(L"DownWalk", CatTexture
 			, Vector2(0.0f, 0.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
 
 		catAnimator->CreateAnimation(L"RightWalk", CatTexture
@@ -84,8 +85,12 @@ namespace my
 
 		catAnimator->CreateAnimation(L"LayDown", CatTexture
 			, Vector2(0.0f, 192.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+		
+		catAnimator->PlayAnimation(L"SitDown", false);*/
 
-		catAnimator->PlayAnimation(L"SitDown", false);
+		// cat -> mushroom 애니메이션폴더 구조 적용 테스트 코드 
+		catAnimator->CreateAnimationByFolder(L"MushroomIdle", L"..\\Resources\\Mushroom", Vector2::Zero, 0.1f);
+		catAnimator->PlayAnimation(L"MushroomIdle", true);
 
 		cat->GetComponent<MyTransform>()->SetPos(Vector2(200.0f, 200.0f));
 		cat->GetComponent<MyTransform>()->SetScale(Vector2(2.0f, 2.0f));

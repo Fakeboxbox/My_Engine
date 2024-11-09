@@ -46,5 +46,6 @@ namespace my
 		eDirection mDirection;
 		class MyAnimator* mAnimator;
 		float mTime;
+		float mDeathTime;
 	};
 }

@@ -4,6 +4,7 @@
 namespace my
 {
 	MyGameObject::MyGameObject()
+		: mState(eState::Active)
 	{
 		mComponents.resize((UINT)enums::eComponentType::End);
 		initializeTransform();
