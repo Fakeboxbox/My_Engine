@@ -14,6 +14,8 @@ namespace my
 		, mTime(0.0f)
 		, mDirection(eDirection::End)
 		, mDeathTime(0.0f)
+		, mDest(Vector2::Zero)
+		, mRadian(0.0f)
 	{
 
 	}
@@ -35,7 +37,6 @@ namespace my
 		{
 			object::Destory(GetOwner());
 		}
-
 
 		if (mAnimator == nullptr)
 			mAnimator = GetOwner()->GetComponent<MyAnimator>();
@@ -79,14 +80,41 @@ namespace my
 
 		mTime += MyTime::DeltaTime();
 
-		if (mTime > 3.0f)
+		// 벡터 활용 테스트 코드
+		MyTransform* tr = GetOwner()->GetComponent<MyTransform>();
+		Vector2 pos = tr->GetPosition();
+
+		// 마우스 위치 이동 (벡터의 뺏셈 활용)
+		/*MyTransform* plTr = mPlayer->GetComponent<MyTransform>();
+		Vector2 dest = mDest - plTr->GetPosition();
+		pos += dest.normalize() * (100.0f * MyTime::DeltaTime());*/
+
+		// 삼각함수를 통한 이동
+		/*mRadian += 5.0f * MyTime::DeltaTime();
+		pos += Vector2(1.0f, 2.0f * cosf(mRadian)) * (100.0f * MyTime::DeltaTime());*/
+
+		// 마우스 위치 이동 (벡터의 뺏셈 활용)
+		MyTransform* plTr = mPlayer->GetComponent<MyTransform>();
+		Vector2 dest = mDest - plTr->GetPosition();
+		dest.normalize();
+
+		float rotDegree = Vector2::Dot(dest, Vector2::Right);	// cos세타
+		rotDegree = acosf(rotDegree);
+
+		ConvertDegree(rotDegree);
+
+		pos += dest * (100.0f * MyTime::DeltaTime());
+
+		tr->SetPos(pos);
+
+		/*if (mTime > 3.0f)
 		{
 			mState = MyCatScript::eState::Walk;
 			int direction = (rand() % 4);
 			mDirection = (MyCatScript::eDirection)direction;
 			PlayWalkAnimationByDirection(mDirection);
 			mTime = 0;
-		}
+		}*/
 	}
 
 	void MyCatScript::move()

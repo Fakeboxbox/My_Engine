@@ -34,10 +34,10 @@ namespace my
 		static void Initialize();
 		static void Update();
 
-		static bool GetKey(eKeyCode keycode) { return Keys[(UINT)keycode].state == eKeyState::Pressed; }
-		static bool GetKeyDown(eKeyCode keycode) { return Keys[(UINT)keycode].state == eKeyState::Down; }
-		static bool GetKeyUp(eKeyCode keycode) { return Keys[(UINT)keycode].state == eKeyState::Up; }
-		static math::Vector2 GetMousePosition() { return mMousePositon; }
+		__forceinline static bool GetKey(eKeyCode keycode) { return Keys[(UINT)keycode].state == eKeyState::Pressed; }
+		__forceinline static bool GetKeyDown(eKeyCode keycode) { return Keys[(UINT)keycode].state == eKeyState::Down; }
+		__forceinline static bool GetKeyUp(eKeyCode keycode) { return Keys[(UINT)keycode].state == eKeyState::Up; }
+		__forceinline static math::Vector2 GetMousePosition() { return mMousePositon; }
 
 	private:
 		static void CreateKeys();

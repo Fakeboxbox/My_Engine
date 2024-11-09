@@ -33,6 +33,10 @@ namespace my
 		void LateUpdate() override;
 		void Render(HDC hdc) override;
 
+		// 벡터 테스트 코드
+		void SetPlayer(class MyGameObject* player) { mPlayer = player; }
+		Vector2 mDest;
+
 	private:
 		void sitDown();
 		void move();
@@ -47,5 +51,9 @@ namespace my
 		class MyAnimator* mAnimator;
 		float mTime;
 		float mDeathTime;
+
+		// 벡터 테스트 코드
+		class MyGameObject* mPlayer;
+		float mRadian;
 	};
 }

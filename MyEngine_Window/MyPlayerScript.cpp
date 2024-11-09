@@ -70,48 +70,97 @@ namespace my
 
 	void MyPlayerScript::AttackEffect()
 	{
-		//Cat
-		MyCat* cat = object::Instantiate<MyCat>(enums::eLayerType::Animal);
-		cat->AddComponent<MyCatScript>();
+		////Cat
+		//MyCat* cat = object::Instantiate<MyCat>(enums::eLayerType::Animal);
+		//MyCatScript* catSrc = cat->AddComponent<MyCatScript>();
 
-		graphcis::MyTexture* CatTexture = MyResources::Find<graphcis::MyTexture>(L"Cat");
-		MyAnimator* catAnimator = cat->AddComponent<MyAnimator>();
+		////벡터 테스트 코드
+		//catSrc->SetPlayer(GetOwner());
 
-		catAnimator->CreateAnimation(L"DownWalk", CatTexture
-			, Vector2(0.0f, 0.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+		//graphcis::MyTexture* CatTexture = MyResources::Find<graphcis::MyTexture>(L"Cat");
+		//MyAnimator* catAnimator = cat->AddComponent<MyAnimator>();
 
-		catAnimator->CreateAnimation(L"RightWalk", CatTexture
-			, Vector2(0.0f, 32.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+		//catAnimator->CreateAnimation(L"DownWalk", CatTexture
+		//	, Vector2(0.0f, 0.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
 
-		catAnimator->CreateAnimation(L"UpWalk", CatTexture
-			, Vector2(0.0f, 64.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+		//catAnimator->CreateAnimation(L"RightWalk", CatTexture
+		//	, Vector2(0.0f, 32.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
 
-		catAnimator->CreateAnimation(L"LeftWalk", CatTexture
-			, Vector2(0.0f, 96.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+		//catAnimator->CreateAnimation(L"UpWalk", CatTexture
+		//	, Vector2(0.0f, 64.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
 
-		catAnimator->CreateAnimation(L"SitDown", CatTexture
-			, Vector2(0.0f, 128.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+		//catAnimator->CreateAnimation(L"LeftWalk", CatTexture
+		//	, Vector2(0.0f, 96.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
 
-		catAnimator->CreateAnimation(L"Grooming", CatTexture
-			, Vector2(0.0f, 160.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+		//catAnimator->CreateAnimation(L"SitDown", CatTexture
+		//	, Vector2(0.0f, 128.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
 
-		catAnimator->CreateAnimation(L"LayDown", CatTexture
-			, Vector2(0.0f, 192.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+		//catAnimator->CreateAnimation(L"Grooming", CatTexture
+		//	, Vector2(0.0f, 160.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
 
-		catAnimator->PlayAnimation(L"SitDown", false);
+		//catAnimator->CreateAnimation(L"LayDown", CatTexture
+		//	, Vector2(0.0f, 192.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
 
-		cat->GetComponent<MyTransform>()->SetPos(Vector2(200.0f, 200.0f));
-		cat->GetComponent<MyTransform>()->SetScale(Vector2(2.0f, 2.0f));
+		//catAnimator->PlayAnimation(L"SitDown", false);
+
+		//MyTransform* tr = GetOwner()->GetComponent<MyTransform>();
+
+		//cat->GetComponent<MyTransform>()->SetPos(tr->GetPosition());
+		//cat->GetComponent<MyTransform>()->SetScale(Vector2(2.0f, 2.0f));
+
+		//Vector2 mousePos = MyInput::GetMousePosition();
+		//catSrc->mDest = mousePos;
 	}
 
 	void MyPlayerScript::idle()
 	{
-		if (MyInput::GetKey(eKeyCode::LButton))
+		if (MyInput::GetKeyDown(eKeyCode::LButton))
 		{
-			mState = MyPlayerScript::eState::GiveWater;
-			mAnimator->PlayAnimation(L"FrontGiveWater", false);
+			//Cat
+			MyCat* cat = object::Instantiate<MyCat>(enums::eLayerType::Animal);
+			MyCatScript* catSrc = cat->AddComponent<MyCatScript>();
+
+			//벡터 테스트 코드
+			catSrc->SetPlayer(GetOwner());
+
+			graphcis::MyTexture* CatTexture = MyResources::Find<graphcis::MyTexture>(L"Cat");
+			MyAnimator* catAnimator = cat->AddComponent<MyAnimator>();
+
+			catAnimator->CreateAnimation(L"DownWalk", CatTexture
+				, Vector2(0.0f, 0.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+
+			catAnimator->CreateAnimation(L"RightWalk", CatTexture
+				, Vector2(0.0f, 32.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+
+			catAnimator->CreateAnimation(L"UpWalk", CatTexture
+				, Vector2(0.0f, 64.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+
+			catAnimator->CreateAnimation(L"LeftWalk", CatTexture
+				, Vector2(0.0f, 96.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+
+			catAnimator->CreateAnimation(L"SitDown", CatTexture
+				, Vector2(0.0f, 128.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+
+			catAnimator->CreateAnimation(L"Grooming", CatTexture
+				, Vector2(0.0f, 160.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+
+			catAnimator->CreateAnimation(L"LayDown", CatTexture
+				, Vector2(0.0f, 192.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+
+			catAnimator->PlayAnimation(L"SitDown", false);
+
+			MyTransform* tr = GetOwner()->GetComponent<MyTransform>();
+
+			cat->GetComponent<MyTransform>()->SetPos(tr->GetPosition());
+			cat->GetComponent<MyTransform>()->SetScale(Vector2(2.0f, 2.0f));
 
 			Vector2 mousePos = MyInput::GetMousePosition();
+			catSrc->mDest = mousePos;
+
+			/*mState = MyPlayerScript::eState::GiveWater;
+			mAnimator->PlayAnimation(L"FrontGiveWater", false);
+
+			Vector2 mousePos = MyInput::GetMousePosition();*/
 		}
 		
 	}

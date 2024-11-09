@@ -9,7 +9,6 @@
 #include <map>
 #include <functional>
 
-#include "MyMath.h"
 #include <mmsystem.h>
 #include <dinput.h>
 #include <filesystem>
@@ -21,3 +20,4 @@
 #pragma comment(lib, "gdiplus.lib")
 
 #include "MyEnums.h"
+#include "MyMath.h"
