@@ -35,7 +35,7 @@ namespace my
 		mDeathTime += MyTime::DeltaTime();
 		if (mDeathTime > 6.0f)
 		{
-			object::Destory(GetOwner());
+			object::Destroy(GetOwner());
 		}
 
 		if (mAnimator == nullptr)
@@ -81,8 +81,8 @@ namespace my
 		mTime += MyTime::DeltaTime();
 
 		// 벡터 활용 테스트 코드
-		MyTransform* tr = GetOwner()->GetComponent<MyTransform>();
-		Vector2 pos = tr->GetPosition();
+		/*MyTransform* tr = GetOwner()->GetComponent<MyTransform>();
+		Vector2 pos = tr->GetPosition();*/
 
 		// 마우스 위치 이동 (벡터의 뺏셈 활용)
 		/*MyTransform* plTr = mPlayer->GetComponent<MyTransform>();
@@ -94,18 +94,18 @@ namespace my
 		pos += Vector2(1.0f, 2.0f * cosf(mRadian)) * (100.0f * MyTime::DeltaTime());*/
 
 		// 마우스 위치 이동 (벡터의 뺏셈 활용)
-		MyTransform* plTr = mPlayer->GetComponent<MyTransform>();
-		Vector2 dest = mDest - plTr->GetPosition();
-		dest.normalize();
+		//MyTransform* plTr = mPlayer->GetComponent<MyTransform>();
+		//Vector2 dest = mDest - plTr->GetPosition();
+		//dest.normalize();
 
-		float rotDegree = Vector2::Dot(dest, Vector2::Right);	// cos세타
-		rotDegree = acosf(rotDegree);
+		//float rotDegree = Vector2::Dot(dest, Vector2::Right);	// cos세타
+		//rotDegree = acosf(rotDegree);
 
-		ConvertDegree(rotDegree);
+		//ConvertDegree(rotDegree);
 
-		pos += dest * (100.0f * MyTime::DeltaTime());
+		//pos += dest * (100.0f * MyTime::DeltaTime());
 
-		tr->SetPos(pos);
+		//tr->SetPos(pos);
 
 		/*if (mTime > 3.0f)
 		{

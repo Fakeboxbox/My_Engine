@@ -163,6 +163,34 @@ namespace my
 			Vector2 mousePos = MyInput::GetMousePosition();*/
 		}
 		
+		MyTransform* tr = GetOwner()->GetComponent<MyTransform>();
+		Vector2 pos = tr->GetPosition();
+
+		if (MyInput::GetKey(eKeyCode::Right))
+		{
+			pos.x += 100.0f * MyTime::DeltaTime();
+		}
+		if (MyInput::GetKey(eKeyCode::Left))
+		{
+			pos.x -= 100.0f * MyTime::DeltaTime();
+		}
+		if (MyInput::GetKey(eKeyCode::Up))
+		{
+			pos.y -= 100.0f * MyTime::DeltaTime();
+		}
+		if (MyInput::GetKey(eKeyCode::Down))
+		{
+			pos.y += 100.0f * MyTime::DeltaTime();
+		}
+
+		tr->SetPos(pos);
+
+		if (MyInput::GetKeyUp(eKeyCode::Right) || MyInput::GetKeyUp(eKeyCode::Left)
+			|| MyInput::GetKeyUp(eKeyCode::Up) || MyInput::GetKeyUp(eKeyCode::Down))
+		{
+			mState = MyPlayerScript::eState::Idle;
+			mAnimator->PlayAnimation(L"Idle", false);
+		}
 	}
 
 	void MyPlayerScript::move()

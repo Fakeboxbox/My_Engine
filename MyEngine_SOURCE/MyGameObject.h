@@ -2,11 +2,18 @@
 #include "CommonInclude.h"
 #include "MyComponent.h"
 
+namespace my::object
+{
+	void Destroy(MyGameObject* gameObject);
+}
+
 namespace my
 {
 	class MyGameObject
 	{
 	public:
+		friend void object::Destroy(MyGameObject* obj);
+
 		enum class eState
 		{
 			Active,
@@ -58,10 +65,12 @@ namespace my
 				mState = eState::Paused;
 		}
 
-		void Death() { mState = eState::Dead; }
+		bool IsAcitve() { return mState == eState::Active; }
+		bool IsDead() { return mState == eState::Dead; }
 
 	private:
 		void initializeTransform();
+		void death() { mState = eState::Dead; }
 
 	private:
 		eState mState;

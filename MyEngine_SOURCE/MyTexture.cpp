@@ -23,6 +23,16 @@ namespace my::graphcis
 		image->mBitmap = CreateCompatibleBitmap(hdc, width, height);
 		image->mHdc = CreateCompatibleDC(hdc);
 
+		// 뒷배경에 흰색이아닌 투명색으로 칠해주는 코드 -> mushroom은 이미지 자체에 흰색 배경이므로 적용 x
+		HBRUSH transparentBrush = (HBRUSH)GetStockObject(NULL_BRUSH);
+		HBRUSH oldBrush = (HBRUSH)SelectObject(hdc, transparentBrush);
+		Rectangle(image->mHdc
+			, -1
+			, -1
+			, image->GetWidth() + 1
+			, image->GetHeight() + 1);
+		(HBRUSH)SelectObject(image->mHdc, oldBrush);
+
 		HBITMAP oldBitmap = (HBITMAP)SelectObject(image->mHdc, image->mBitmap);
 		DeleteObject(oldBitmap);
 

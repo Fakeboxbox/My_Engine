@@ -74,6 +74,7 @@ namespace my
 			if (mTexture->IsAlpha())	// 알파채널이 있다면 
 			{
 				BLENDFUNCTION func = {};
+
 				func.BlendOp = AC_SRC_OVER;
 				func.BlendFlags = 0;
 				func.AlphaFormat = AC_SRC_ALPHA;
@@ -105,6 +106,8 @@ namespace my
 					, (int)sprite.size.y
 					, RGB(255, 0, 255));
 			}
+
+			Rectangle(hdc, pos.x, pos.y, pos.x + 10, pos.y + 10);
 		}
 		else if (type == graphcis::MyTexture::eTextureType::Png)
 		{

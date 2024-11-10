@@ -23,7 +23,7 @@ namespace my
 
 	class MyInput
 	{
-	public:
+	public:	
 		struct Key
 		{
 			eKeyCode keyCode;

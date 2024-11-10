@@ -15,6 +15,8 @@
 #include "MyAnimator.h"
 #include "MyCat.h"
 #include "MyCatScript.h"
+#include "MyBoxCollider2D.h"
+#include "MyColliderManager.h"
 
 namespace my
 {
@@ -31,6 +33,9 @@ namespace my
 
 	void MyPlayScene::Initialize()
 	{
+		// 콜라이더끼리의 충돌체크 활성화 코드
+		MyColliderManager::CollisionLayerCheck(eLayerType::Player, eLayerType::Animal, true);
+
 		// 게임오브젝트를 만들기전에 리소스들을 전부 Load해두면 좋다.
 		MyGameObject* camera = object::Instantiate<MyGameObject>(enums::eLayerType::None, Vector2(343.0f, 442.0f));
 		MyCamera* cameraComp = camera->AddComponent<MyCamera>();
@@ -39,6 +44,9 @@ namespace my
 		//Player
 		mPlayer = object::Instantiate<MyPlayer>(enums::eLayerType::Player);
 		MyPlayerScript* plScript = mPlayer->AddComponent<MyPlayerScript>();
+
+		MyBoxCollider2D* collider = mPlayer->AddComponent<MyBoxCollider2D>();
+		collider->SetOffset(Vector2(-50.0f, -50.0f));
 
 		graphcis::MyTexture* playerTexture = MyResources::Find<graphcis::MyTexture>(L"Player");
 		MyAnimator* playerAnimator = mPlayer->AddComponent<MyAnimator>();
@@ -57,13 +65,16 @@ namespace my
 
 
 		//Cat
-		/*MyCat* cat = object::Instantiate<MyCat>(enums::eLayerType::Animal);
+		MyCat* cat = object::Instantiate<MyCat>(enums::eLayerType::Animal);
 		//cat->SetActive(true);
 		cat->AddComponent<MyCatScript>();
 		//cameraComp->SetTarget(cat);
 
 		graphcis::MyTexture* CatTexture = MyResources::Find<graphcis::MyTexture>(L"Cat");
 		MyAnimator* catAnimator = cat->AddComponent<MyAnimator>();
+
+		MyBoxCollider2D* catCollider = cat->AddComponent<MyBoxCollider2D>();
+		catCollider->SetOffset(Vector2(-50.0f, -50.0f));
 
 		catAnimator->CreateAnimation(L"DownWalk", CatTexture
 			, Vector2(0.0f, 0.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
@@ -93,7 +104,7 @@ namespace my
 		catAnimator->PlayAnimation(L"MushroomIdle", true);
 
 		cat->GetComponent<MyTransform>()->SetPos(Vector2(200.0f, 200.0f));
-		cat->GetComponent<MyTransform>()->SetScale(Vector2(2.0f, 2.0f));*/
+		cat->GetComponent<MyTransform>()->SetScale(Vector2(1.0f, 1.0f));
 
 		// 게임 오브젝트 생성후에 레이어와 게임오브젝트들의 init 함수를 호출
 		MyScene::Initialize();

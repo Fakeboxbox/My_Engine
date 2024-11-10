@@ -3,6 +3,7 @@
 #include "MyTime.h"
 #include "MySceneManager.h"
 #include "MyResources.h"
+#include "MyColliderManager.h"
 
 namespace my
 {
@@ -28,6 +29,7 @@ namespace my
 		CreateBuffer(width, height);
 		InitializeEtc();
 
+		MyColliderManager::Initialize();
 		MySceneManager::Initialize();
 	}
 
@@ -43,12 +45,13 @@ namespace my
 	{
 		MyInput::Update();
 		MyTime::Update();
-
+		MyColliderManager::Update();
 		MySceneManager::Update();
 	}
 
 	void MyApplication::LateUpdate()
 	{
+		MyColliderManager::LateUpdate();
 		MySceneManager::LateUpdate();
 	}
 
@@ -57,6 +60,7 @@ namespace my
 		ClearRenderTarget();
 
 		MyTime::Render(mBackHdc);
+		MyColliderManager::Render(mBackHdc);
 		MySceneManager::Render(mBackHdc);
 
 		CopyRenderTarget(mBackHdc, mHdc);
@@ -75,7 +79,13 @@ namespace my
 
 	void MyApplication::ClearRenderTarget()
 	{
+		HBRUSH grayBrush = (HBRUSH)CreateSolidBrush(RGB(128, 128, 128));
+		HBRUSH oldBrush = (HBRUSH)SelectObject(mBackHdc, grayBrush);
+
 		Rectangle(mBackHdc, -1, -1, 1601, 901);
+
+		(HBRUSH)SelectObject(mBackHdc, oldBrush);
+		DeleteObject(grayBrush);
 	}
 
 	void MyApplication::CopyRenderTarget(HDC sorce, HDC dest)

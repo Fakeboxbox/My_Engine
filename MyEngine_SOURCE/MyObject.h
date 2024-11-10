@@ -32,8 +32,11 @@ namespace my::object
 		return gameObject;
 	}
 
-	static void Destory(MyGameObject* obj)
+	/*static void Destory(MyGameObject* obj)
 	{
+		if (obj != nullptr)
+			return;
+
 		obj->Death();
-	}
+	}*/
 }

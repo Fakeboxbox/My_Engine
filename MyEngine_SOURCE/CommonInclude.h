@@ -7,11 +7,12 @@
 #include <algorithm>
 #include <string>
 #include <map>
+#include <bitset>
 #include <functional>
+#include <filesystem>
 
 #include <mmsystem.h>
 #include <dinput.h>
-#include <filesystem>
 
 #pragma comment(lib, "Msimg32.lib")
 #pragma comment(lib, "winmm.lib")

@@ -1,6 +1,15 @@
 #include "MyGameObject.h"
 #include "MyTransform.h"
 
+namespace my::object
+{
+	void Destroy(MyGameObject* gameObject)
+	{
+		if (gameObject != nullptr)
+			gameObject->death();
+	}
+}
+
 namespace my
 {
 	MyGameObject::MyGameObject()
