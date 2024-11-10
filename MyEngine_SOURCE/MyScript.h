@@ -14,6 +14,10 @@ namespace my
 		void LateUpdate() override;
 		void Render(HDC hdc) override;
 
+		virtual void OnCollisionEnter(class MyCollider* other);
+		virtual void OnCollisionStay(class MyCollider* other);
+		virtual void OnCollisionExit(class MyCollider* other);
+
 	private:
 
 	};

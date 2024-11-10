@@ -1,4 +1,5 @@
 #include "MyScript.h"
+#include "MyCollider.h"
 
 namespace my
 {
@@ -29,6 +30,21 @@ namespace my
 	}
 
 	void MyScript::Render(HDC hdc)
+	{
+
+	}
+
+	void MyScript::OnCollisionEnter(MyCollider* other)
+	{
+
+	}
+
+	void MyScript::OnCollisionStay(MyCollider* other)
+	{
+
+	}
+
+	void MyScript::OnCollisionExit(MyCollider* other)
 	{
 
 	}

@@ -16,6 +16,7 @@
 #include "MyCat.h"
 #include "MyCatScript.h"
 #include "MyBoxCollider2D.h"
+#include "MyCircleCollider2D.h"
 #include "MyColliderManager.h"
 
 namespace my
@@ -45,7 +46,8 @@ namespace my
 		mPlayer = object::Instantiate<MyPlayer>(enums::eLayerType::Player);
 		MyPlayerScript* plScript = mPlayer->AddComponent<MyPlayerScript>();
 
-		MyBoxCollider2D* collider = mPlayer->AddComponent<MyBoxCollider2D>();
+		//MyBoxCollider2D* collider = mPlayer->AddComponent<MyBoxCollider2D>();
+		MyCircleCollider2D* collider = mPlayer->AddComponent<MyCircleCollider2D>();
 		collider->SetOffset(Vector2(-50.0f, -50.0f));
 
 		graphcis::MyTexture* playerTexture = MyResources::Find<graphcis::MyTexture>(L"Player");
@@ -73,7 +75,8 @@ namespace my
 		graphcis::MyTexture* CatTexture = MyResources::Find<graphcis::MyTexture>(L"Cat");
 		MyAnimator* catAnimator = cat->AddComponent<MyAnimator>();
 
-		MyBoxCollider2D* catCollider = cat->AddComponent<MyBoxCollider2D>();
+		//MyBoxCollider2D* catCollider = cat->AddComponent<MyBoxCollider2D>();
+		MyCircleCollider2D* catCollider = cat->AddComponent<MyCircleCollider2D>();
 		catCollider->SetOffset(Vector2(-50.0f, -50.0f));
 
 		catAnimator->CreateAnimation(L"DownWalk", CatTexture

@@ -7,6 +7,7 @@
 #include "MyCat.h"
 #include "MyCatScript.h"
 #include "MyObject.h"
+#include "MyCollider.h"
 #include "MyResources.h"
 
 namespace my
@@ -110,6 +111,21 @@ namespace my
 
 		//Vector2 mousePos = MyInput::GetMousePosition();
 		//catSrc->mDest = mousePos;
+	}
+
+	void MyPlayerScript::OnCollisionEnter(MyCollider* other)
+	{
+		other->GetOwner()->GetComponent<MyTransform>()->SetPos(Vector2(400.0f, 500.0f));
+	}
+
+	void MyPlayerScript::OnCollisionStay(MyCollider* other)
+	{
+		int a = 0;
+	}
+
+	void MyPlayerScript::OnCollisionExit(MyCollider* other)
+	{
+		int a = 0;
 	}
 
 	void MyPlayerScript::idle()
