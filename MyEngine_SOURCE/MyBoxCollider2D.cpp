@@ -1,10 +1,13 @@
 #include "MyBoxCollider2D.h"
 #include "MyTransform.h"
 #include "MyGameObject.h"
+#include "MyRenderer.h"
+#include "MyCamera.h"
 
 namespace my
 {
 	MyBoxCollider2D::MyBoxCollider2D()
+		: MyCollider(enums::eColliderType::Rect2D)
 	{
 
 	}
@@ -33,6 +36,9 @@ namespace my
 	{
 		MyTransform* tr = GetOwner()->GetComponent<MyTransform>();
 		Vector2 pos = tr->GetPosition();
+
+		if (renderer::mainCamera)
+			pos = renderer::mainCamera->CalculatePosition(pos);
 
 		Vector2 offset = GetOffset();
 

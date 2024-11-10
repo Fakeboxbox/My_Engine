@@ -6,7 +6,7 @@ namespace my
 	class MyCollider : public MyComponent
 	{
 	public:
-		MyCollider();
+		MyCollider(eColliderType type);
 		~MyCollider();
 
 		virtual void Initialize();
@@ -14,11 +14,24 @@ namespace my
 		virtual void LateUpdate();
 		virtual void Render(HDC hdc);
 
+		virtual void OnCollisionEnter(MyCollider* other);
+		virtual void OnCollisionStay(MyCollider* other);
+		virtual void OnCollisionExit(MyCollider* other);
+
 		Vector2 GetOffset() { return mOffset; }
 		void SetOffset(Vector2 offset) { mOffset = offset; }
-
+		UINT GetID() { return mID; }
+		Vector2 GetSize() { return mSize; }
+		void SetSize(Vector2 size) { mSize = size; }
+		eColliderType GetColliderType() { return mType; }
+		
 	private:
+		static UINT32 mCollisonID;
+
+		UINT32 mID;
 		Vector2 mOffset;
+		Vector2 mSize;
+		eColliderType mType;
 	};
 }
 

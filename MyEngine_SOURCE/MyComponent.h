@@ -3,11 +3,12 @@
 
 namespace my
 {
+	using namespace enums;
 	class MyGameObject;
 	class MyComponent : public MyEntity
 	{
 	public:
-		MyComponent(enums::eComponentType Type);
+		MyComponent(eComponentType type);
 		~MyComponent();
 
 		virtual void Initialize();

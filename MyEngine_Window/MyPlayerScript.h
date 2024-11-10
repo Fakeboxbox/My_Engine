@@ -24,6 +24,10 @@ namespace my
 		void Render(HDC hdc) override;
 
 		void AttackEffect();
+
+		void OnCollisionEnter(class MyCollider* other) override;
+		void OnCollisionStay(class MyCollider* other) override;
+		void OnCollisionExit(class MyCollider* other) override;
 		
 	private:
 		void idle();
