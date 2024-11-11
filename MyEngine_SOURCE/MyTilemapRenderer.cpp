@@ -7,6 +7,8 @@
 namespace my
 {
 	Vector2 MyTilemapRenderer::TileSize = Vector2::One;
+	Vector2 MyTilemapRenderer::OriginTileSize = Vector2::One;
+	Vector2 MyTilemapRenderer::SelectedIndex = Vector2::One;	// 처음 클릭 시 아무것도 그리기 싫을 시에 -1로 
 
 	MyTilemapRenderer::MyTilemapRenderer()
 		: MyComponent(enums::eComponentType::SpriteRenderer)
@@ -16,6 +18,7 @@ namespace my
 		, mTileSize(Vector2(16.0f, 16.0f))
 	{
 		TileSize = mTileSize * mSize;
+		OriginTileSize = mTileSize;
 	}
 
 	MyTilemapRenderer::~MyTilemapRenderer()

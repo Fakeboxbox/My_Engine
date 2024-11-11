@@ -1,5 +1,6 @@
 #pragma once
 #include "..\\MyEngine_SOURCE\\MyScene.h"
+#include "MyTile.h"
 
 namespace my
 {
@@ -17,8 +18,11 @@ namespace my
 		void OnEnter() override;
 		void OnExit() override;
 
-	private:
+		void Save();
+		void Load();
 
+	private:
+		std::vector<MyTile*> mTiles;
 	};
 }
 

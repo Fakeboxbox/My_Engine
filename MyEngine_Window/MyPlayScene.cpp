@@ -18,6 +18,8 @@
 #include "MyBoxCollider2D.h"
 #include "MyCircleCollider2D.h"
 #include "MyColliderManager.h"
+#include "MyTile.h"
+#include "MyTilemapRenderer.h"
 
 namespace my
 {
@@ -34,6 +36,34 @@ namespace my
 
 	void MyPlayScene::Initialize()
 	{
+		FILE* pFile = nullptr;
+		_wfopen_s(&pFile, L"..\\Resources\\Test", L"rb");
+
+		while (true)
+		{
+			int idxX = 0;
+			int idxY = 0;
+
+			int posX = 0;
+			int posY = 0;
+
+			if (fread(&idxX, sizeof(int), 1, pFile) == NULL)
+				break;
+			if (fread(&idxY, sizeof(int), 1, pFile) == NULL)
+				break;
+			if (fread(&posX, sizeof(int), 1, pFile) == NULL)
+				break;
+			if (fread(&posY, sizeof(int), 1, pFile) == NULL)
+				break;
+
+			MyTile* tile = object::Instantiate<MyTile>(eLayerType::Tile, Vector2(posX, posY));
+			MyTilemapRenderer* tmr = tile->AddComponent<MyTilemapRenderer>();
+			tmr->SetTexture(MyResources::Find<graphics::MyTexture>(L"SpringFloor"));
+			tmr->SetIndex(Vector2(idxX, idxY));
+		}
+
+		fclose(pFile);
+
 		// 콜라이더끼리의 충돌체크 활성화 코드
 		MyColliderManager::CollisionLayerCheck(eLayerType::Player, eLayerType::Animal, true);
 

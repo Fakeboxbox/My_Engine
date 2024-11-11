@@ -109,8 +109,17 @@ namespace my
 		GetCursorPos(&mousePos);
 		ScreenToClient(application.GetHwnd(), &mousePos);
 
-		mMousePositon.x = mousePos.x;
-		mMousePositon.y = mousePos.y;
+		UINT width = application.GetWidth();
+		UINT height = application.GetHeight();
+
+		mMousePositon.x = -1.0f;
+		mMousePositon.y = -1.0f;
+
+		if (mousePos.x > 0 && mousePos.x < width)
+			mMousePositon.x = mousePos.x;
+
+		if (mousePos.y > 0 && mousePos.y < height)
+			mMousePositon.y = mousePos.y;
 	}
 
 	void MyInput::ClearKeys()

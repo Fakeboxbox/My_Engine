@@ -24,7 +24,7 @@ namespace my
 		MyGameObject::Render(hdc);
 	}
 
-	void MyTile::SetPosition(int x, int y)
+	void MyTile::SetIndexPosition(int x, int y)
 	{
 		MyTransform* tr = GetComponent<MyTransform>();
 		Vector2 pos;

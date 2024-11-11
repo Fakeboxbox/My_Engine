@@ -18,9 +18,13 @@ namespace my
 
 		void SetTexture(graphics::MyTexture* texture) { mTexture = texture; }
 		void SetSize(Vector2 size) { mSize = size; }
+		void SetIndex(Vector2 index) { mIndex = index; }
+		Vector2 GetIndex() { return mIndex; }
 
 	public:
 		static Vector2 TileSize;
+		static Vector2 OriginTileSize;
+		static Vector2 SelectedIndex;
 
 	private:
 		graphics::MyTexture* mTexture;
