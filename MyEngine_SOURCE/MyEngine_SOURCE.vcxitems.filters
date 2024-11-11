@@ -55,10 +55,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)MyRenderer.cpp">
       <Filter>Renderer</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)MyAnimator.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)MyAnimation.cpp">
-      <Filter>Resource</Filter>
-    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)MyCollider.cpp">
       <Filter>Component\Collider</Filter>
     </ClCompile>
@@ -68,12 +64,23 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)MyCircleCollider2D.cpp">
       <Filter>Component\Collider</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)MyColliderManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MyDontDestroyOnLoad.cpp">
       <Filter>Scene</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)MyTilemapRenderer.cpp">
       <Filter>Component\TileMapRenderer</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MyColliderManager.cpp">
+      <Filter>Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MyAnimator.cpp">
+      <Filter>Component\Animator</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MyAnimation.cpp">
+      <Filter>Component\Animator</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MyRigdbody.cpp">
+      <Filter>Component\Rigidbody</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -140,10 +147,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)MyRenderer.h">
       <Filter>Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)MyAnimator.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)MyAnimation.h">
-      <Filter>Resource</Filter>
-    </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)MyCollider.h">
       <Filter>Component\Collider</Filter>
     </ClInclude>
@@ -153,12 +156,23 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)MyBoxCollider2D.h">
       <Filter>Component\Collider</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)MyColliderManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MyDontDestroyOnLoad.h">
       <Filter>Scene</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)MyTilemapRenderer.h">
       <Filter>Component\TileMapRenderer</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MyColliderManager.h">
+      <Filter>Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MyAnimator.h">
+      <Filter>Component\Animator</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MyAnimation.h">
+      <Filter>Component\Animator</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MyRigdbody.h">
+      <Filter>Component\Rigidbody</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -209,6 +223,15 @@
     </Filter>
     <Filter Include="Component\TileMapRenderer">
       <UniqueIdentifier>{6f5d0831-5447-4b6e-9c83-22b2654d236f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Collision">
+      <UniqueIdentifier>{2e979cbd-70cf-48ea-bc52-a1c438d23495}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component\Animator">
+      <UniqueIdentifier>{e232c2ca-eb3b-4b4a-8d39-db0a9b585729}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component\Rigidbody">
+      <UniqueIdentifier>{860f2fdf-df70-4d10-b9d8-60001b6ed3b2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

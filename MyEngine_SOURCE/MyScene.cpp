@@ -1,4 +1,5 @@
 #include "MyScene.h"
+#include "MyColliderManager.h"
 
 namespace my
 {
@@ -89,7 +90,7 @@ namespace my
 
 	void MyScene::OnExit()
 	{
-
+		MyColliderManager::Clear();
 	}
 
 	void MyScene::AddGameObject(MyGameObject* gameObj, const enums::eLayerType type)

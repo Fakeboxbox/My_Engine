@@ -22,6 +22,7 @@ namespace my
 		static MyScene* LoadScene(const std::wstring& name);
 		static MyScene* GetAcitiveScene() { return mActiveScene; }
 		static MyScene* GetDontDestroyOnLoad() { return mDontDestroyOnLoad; }
+		static std::vector<MyGameObject*> GetGameObjects(eLayerType layer);
 
 		static void Initialize();
 		static void Update();

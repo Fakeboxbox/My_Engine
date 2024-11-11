@@ -20,6 +20,9 @@
 #include "MyColliderManager.h"
 #include "MyTile.h"
 #include "MyTilemapRenderer.h"
+#include "MyRigdbody.h"
+#include "MyFloor.h"
+#include "MyFloorScript.h"
 
 namespace my
 {
@@ -36,7 +39,8 @@ namespace my
 
 	void MyPlayScene::Initialize()
 	{
-		FILE* pFile = nullptr;
+		// 저장한 맵 불러오는 예시
+		/*FILE* pFile = nullptr;
 		_wfopen_s(&pFile, L"..\\Resources\\Test", L"rb");
 
 		while (true)
@@ -61,11 +65,7 @@ namespace my
 			tmr->SetTexture(MyResources::Find<graphics::MyTexture>(L"SpringFloor"));
 			tmr->SetIndex(Vector2(idxX, idxY));
 		}
-
-		fclose(pFile);
-
-		// 콜라이더끼리의 충돌체크 활성화 코드
-		MyColliderManager::CollisionLayerCheck(eLayerType::Player, eLayerType::Animal, true);
+		fclose(pFile);*/
 
 		// 게임오브젝트를 만들기전에 리소스들을 전부 Load해두면 좋다.
 		MyGameObject* camera = object::Instantiate<MyGameObject>(enums::eLayerType::None, Vector2(343.0f, 442.0f));
@@ -77,8 +77,7 @@ namespace my
 		object::DontDestroyOnLoad(mPlayer);
 		MyPlayerScript* plScript = mPlayer->AddComponent<MyPlayerScript>();
 
-		//MyBoxCollider2D* collider = mPlayer->AddComponent<MyBoxCollider2D>();
-		MyCircleCollider2D* collider = mPlayer->AddComponent<MyCircleCollider2D>();
+		MyBoxCollider2D* collider = mPlayer->AddComponent<MyBoxCollider2D>();
 		collider->SetOffset(Vector2(-50.0f, -50.0f));
 
 		graphics::MyTexture* playerTexture = MyResources::Find<graphics::MyTexture>(L"Player");
@@ -95,50 +94,13 @@ namespace my
 		playerAnimator->GetCompleteEvent(L"FrontGiveWater") = std::bind(&MyPlayerScript::AttackEffect, plScript);
 
 		mPlayer->GetComponent<MyTransform>()->SetPos(Vector2(300.0f, 250.0f));
+		mPlayer->AddComponent<MyRigdbody>();
 
-
-		//Cat
-		MyCat* cat = object::Instantiate<MyCat>(enums::eLayerType::Animal);
-		//cat->SetActive(true);
-		cat->AddComponent<MyCatScript>();
-		//cameraComp->SetTarget(cat);
-
-		graphics::MyTexture* CatTexture = MyResources::Find<graphics::MyTexture>(L"Cat");
-		MyAnimator* catAnimator = cat->AddComponent<MyAnimator>();
-
-		//MyBoxCollider2D* catCollider = cat->AddComponent<MyBoxCollider2D>();
-		MyCircleCollider2D* catCollider = cat->AddComponent<MyCircleCollider2D>();
-		catCollider->SetOffset(Vector2(-50.0f, -50.0f));
-
-		catAnimator->CreateAnimation(L"DownWalk", CatTexture
-			, Vector2(0.0f, 0.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
-
-		catAnimator->CreateAnimation(L"RightWalk", CatTexture
-			, Vector2(0.0f, 32.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
-
-		catAnimator->CreateAnimation(L"UpWalk", CatTexture
-			, Vector2(0.0f, 64.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
-
-		catAnimator->CreateAnimation(L"LeftWalk", CatTexture
-			, Vector2(0.0f, 96.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
-
-		catAnimator->CreateAnimation(L"SitDown", CatTexture
-			, Vector2(0.0f, 128.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
-
-		catAnimator->CreateAnimation(L"Grooming", CatTexture
-			, Vector2(0.0f, 160.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
-
-		catAnimator->CreateAnimation(L"LayDown", CatTexture
-			, Vector2(0.0f, 192.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
-		
-		catAnimator->PlayAnimation(L"SitDown", false);
-
-		// cat -> mushroom 애니메이션폴더 구조 적용 테스트 코드 
-		catAnimator->CreateAnimationByFolder(L"MushroomIdle", L"..\\Resources\\Mushroom", Vector2::Zero, 0.1f);
-		catAnimator->PlayAnimation(L"MushroomIdle", true);
-
-		cat->GetComponent<MyTransform>()->SetPos(Vector2(200.0f, 200.0f));
-		cat->GetComponent<MyTransform>()->SetScale(Vector2(1.0f, 1.0f));
+		MyFloor* floor = object::Instantiate<MyFloor>(eLayerType::Floor, Vector2(100.0f, 600.0f));
+		floor->SetName(L"Floor");
+		MyBoxCollider2D* floorCol = floor->AddComponent<MyBoxCollider2D>();
+		floorCol->SetSize(Vector2(3.0f, 1.0f));
+		floor->AddComponent<MyFloorScript>();
 
 		// 게임 오브젝트 생성후에 레이어와 게임오브젝트들의 init 함수를 호출
 		MyScene::Initialize();
@@ -168,7 +130,10 @@ namespace my
 
 	void MyPlayScene::OnEnter()
 	{
+		MyScene::OnEnter();
 
+		MyColliderManager::CollisionLayerCheck(eLayerType::Player, eLayerType::Animal, true);
+		MyColliderManager::CollisionLayerCheck(eLayerType::Player, eLayerType::Floor, true);
 	}
 
 	void MyPlayScene::OnExit()

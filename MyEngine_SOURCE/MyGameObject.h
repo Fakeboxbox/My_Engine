@@ -1,6 +1,7 @@
 #pragma once
 #include "CommonInclude.h"
 #include "MyComponent.h"
+#include "MyCollider.h"
 
 namespace my::object
 {
@@ -9,7 +10,7 @@ namespace my::object
 
 namespace my
 {
-	class MyGameObject
+	class MyGameObject : public MyEntity
 	{
 	public:
 		friend void object::Destroy(MyGameObject* obj);

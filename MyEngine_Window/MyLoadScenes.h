@@ -9,7 +9,7 @@ namespace my
 {
 	void LoadScenes()
 	{
-		//MySceneManager::CreateScene<MyTitleScene>(L"TitleScene");
+		MySceneManager::CreateScene<MyTitleScene>(L"TitleScene");
 		MySceneManager::CreateScene<MyPlayScene>(L"PlayScene");
 		//MySceneManager::CreateScene<MyToolScene>(L"ToolScene");
 

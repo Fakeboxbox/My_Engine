@@ -7,6 +7,7 @@
 #include "..\\MyEngine_SOURCE\\MyApplication.h"
 #include "..\\MyEngine_SOURCE\\MyResources.h"
 #include "..\\MyEngine_SOURCE\\MyTexture.h"
+#include "..\\MyEngine_SOURCE\\MySceneManager.h"
 
 #include "..\\MyEngine_Window\\MyLoadResources.h"
 #include "..\\MyEngine_Window\\MyLoadScenes.h"
@@ -144,9 +145,6 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
       CW_USEDEFAULT, 0, width, height, nullptr, nullptr, hInstance, nullptr);
 
    // 2개 이상의 윈도우를 생성가능합니다.
-   HWND ToolHWnd = CreateWindowW(L"TILEWINDOW", L"TileWindow", WS_OVERLAPPEDWINDOW,
-       0, 0, width, height, nullptr, nullptr, hInstance, nullptr);
-
 
    application.Initialize(hWnd, width, height);    // 값복사가 되지 않겠느냐? 생각할수 있는데 핸들은 주소값입니다.
 
@@ -169,19 +167,29 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    int a = 0;
    srand((unsigned int)(&a));
 
-   // Tile 윈도우 크기 조정
-   my::graphics::MyTexture* tilemapTexture 
-       = my::MyResources::Find<my::graphics::MyTexture>(L"SpringFloor");
+   my::MyScene* activeScene = my::MySceneManager::GetAcitiveScene();
 
-   RECT rect = { 0, 0, tilemapTexture->GetWidth(), tilemapTexture->GetHeight() };
-   AdjustWindowRect(&rect, WS_OVERLAPPEDWINDOW, false);
+   std::wstring name = activeScene->GetName();
 
-   UINT toolWidth = rect.right - rect.left;
-   UINT toolHeight = rect.bottom - rect.top;
+   if (name == L"ToolScene")
+   {
+       HWND ToolHWnd = CreateWindowW(L"TILEWINDOW", L"TileWindow", WS_OVERLAPPEDWINDOW,
+           0, 0, width, height, nullptr, nullptr, hInstance, nullptr);
 
-   SetWindowPos(ToolHWnd, nullptr, width, 0, toolWidth, toolHeight, 0);
-   ShowWindow(ToolHWnd, true);
-   UpdateWindow(ToolHWnd);
+       // Tile 윈도우 크기 조정
+       my::graphics::MyTexture* tilemapTexture
+           = my::MyResources::Find<my::graphics::MyTexture>(L"SpringFloor");
+
+       RECT rect = { 0, 0, tilemapTexture->GetWidth(), tilemapTexture->GetHeight() };
+       AdjustWindowRect(&rect, WS_OVERLAPPEDWINDOW, false);
+
+       UINT toolWidth = rect.right - rect.left;
+       UINT toolHeight = rect.bottom - rect.top;
+
+       SetWindowPos(ToolHWnd, nullptr, width, 0, toolWidth, toolHeight, 0);
+       ShowWindow(ToolHWnd, true);
+       UpdateWindow(ToolHWnd);
+   }
 
    return TRUE;
 }

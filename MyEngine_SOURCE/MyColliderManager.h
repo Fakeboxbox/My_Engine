@@ -25,6 +25,7 @@ namespace my
 		static void Update();
 		static void LateUpdate();
 		static void Render(HDC hdc);
+		static void Clear();
 
 		static void CollisionLayerCheck(eLayerType left, eLayerType right, bool enable);
 		static void LayerCollision(class MyScene* scene, eLayerType left, eLayerType right);
@@ -36,4 +37,3 @@ namespace my
 		static std::unordered_map<UINT64, bool> mCollisionMap;
 	};
 }
-

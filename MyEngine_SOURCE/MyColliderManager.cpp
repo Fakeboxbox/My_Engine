@@ -42,6 +42,12 @@ namespace my
 
 	}
 
+	void MyColliderManager::Clear()
+	{
+		mCollisionMap.clear();
+		mCollisionLayerMatrix->reset();
+	}
+
 	void MyColliderManager::CollisionLayerCheck(eLayerType left, eLayerType right, bool enable)
 	{
 		int row = 0;
@@ -63,8 +69,8 @@ namespace my
 
 	void MyColliderManager::LayerCollision(MyScene* scene, eLayerType left, eLayerType right)
 	{
-		const std::vector<MyGameObject*>& lefts = scene->GetLayer(left)->GetGameObjects();
-		const std::vector<MyGameObject*>& rights = scene->GetLayer(right)->GetGameObjects();
+		const std::vector<MyGameObject*>& lefts = MySceneManager::GetGameObjects(left);
+		const std::vector<MyGameObject*>& rights = MySceneManager::GetGameObjects(right);
 
 		// 지금은 2중포문으로 충돌체크를 하고있지만 현업에서는 옥트리를 사용하기도 한다. 이것이 좀더 연산량이 적다.
 		for (MyGameObject* left : lefts)

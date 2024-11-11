@@ -22,6 +22,8 @@
     <ClInclude Include="MyCameraScript.h" />
     <ClInclude Include="MyCat.h" />
     <ClInclude Include="MyCatScript.h" />
+    <ClInclude Include="MyFloor.h" />
+    <ClInclude Include="MyFloorScript.h" />
     <ClInclude Include="MyLoadResources.h" />
     <ClInclude Include="MyLoadScenes.h" />
     <ClInclude Include="MyPlayer.h" />
@@ -35,6 +37,8 @@
     <ClCompile Include="MyCameraScript.cpp" />
     <ClCompile Include="MyCat.cpp" />
     <ClCompile Include="MyCatScript.cpp" />
+    <ClCompile Include="MyFloor.cpp" />
+    <ClCompile Include="MyFloorScript.cpp" />
     <ClCompile Include="MyPlayer.cpp" />
     <ClCompile Include="MyPlayerScript.cpp" />
     <ClCompile Include="MyPlayScene.cpp" />

@@ -6,6 +6,7 @@ namespace my::enums
 	{
 		Transform,
 		Collider,
+		Rigidbody,
 		Script,
 		SpriteRenderer,
 		Animator,
@@ -18,10 +19,10 @@ namespace my::enums
 		None,
 		BackGround,
 		Tile,
-		Player,
 		Animal,
+		Player,
+		Floor,
 		particle,
-		// etc...
 		Max = 16
 	};
 
