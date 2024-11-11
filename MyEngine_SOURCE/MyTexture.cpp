@@ -4,7 +4,7 @@
 
 extern my::MyApplication application;	// extern: 해당 전역변수가 존재함을 알리는 키워드
 
-namespace my::graphcis
+namespace my::graphics
 {
 	MyTexture* MyTexture::Create(const std::wstring& name, UINT width, UINT height)
 	{

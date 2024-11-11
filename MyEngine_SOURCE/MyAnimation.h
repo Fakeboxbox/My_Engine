@@ -33,7 +33,7 @@ namespace my
 		void Render(HDC hdc);
 
 		void CreateAnimation(const std::wstring& name
-			, graphcis::MyTexture* spriteSheet
+			, graphics::MyTexture* spriteSheet
 			, Vector2 leftTop
 			, Vector2 size
 			, Vector2 offset
@@ -47,7 +47,7 @@ namespace my
 
 	private:
 		class MyAnimator* mAnimator;
-		graphcis::MyTexture* mTexture;
+		graphics::MyTexture* mTexture;
 
 		std::vector<Sprite> mAnimationSheet;
 		int mIndex;

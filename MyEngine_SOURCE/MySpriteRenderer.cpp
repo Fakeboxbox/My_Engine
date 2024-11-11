@@ -46,7 +46,7 @@ namespace my
 
 		pos = renderer::mainCamera->CalculatePosition(pos);
 
-		if (mTexture->GetTextureType() == graphcis::MyTexture::eTextureType::Bmp)
+		if (mTexture->GetTextureType() == graphics::MyTexture::eTextureType::Bmp)
 		{
 			if (mTexture->IsAlpha())	// 알파채널이 있다면 
 			{
@@ -81,7 +81,7 @@ namespace my
 					, RGB(255, 0, 255));
 			}
 		}
-		else if (mTexture->GetTextureType() == graphcis::MyTexture::eTextureType::Png)
+		else if (mTexture->GetTextureType() == graphics::MyTexture::eTextureType::Png)
 		{
 			// 투명화시킬 픽셀의 색 범위
 			Gdiplus::ImageAttributes imgAtt = {};

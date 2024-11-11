@@ -4,6 +4,7 @@
 #include "MyLayer.h"
 #include "MyScene.h"
 #include "MySceneManager.h"
+#include "MyTransform.h"
 
 namespace my::object
 {

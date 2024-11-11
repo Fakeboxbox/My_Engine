@@ -39,7 +39,7 @@ namespace my
 		void Render(HDC hdc) override;
 
 		void CreateAnimation(const std::wstring& name
-			, graphcis::MyTexture* spriteSheet
+			, graphics::MyTexture* spriteSheet
 			, Vector2 leftTop
 			, Vector2 size
 			, Vector2 offset

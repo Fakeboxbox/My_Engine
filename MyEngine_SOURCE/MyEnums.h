@@ -17,6 +17,7 @@ namespace my::enums
 	{
 		None,
 		BackGround,
+		Tile,
 		Player,
 		Animal,
 		particle,

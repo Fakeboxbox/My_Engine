@@ -51,7 +51,7 @@ namespace my
 		MyCircleCollider2D* collider = mPlayer->AddComponent<MyCircleCollider2D>();
 		collider->SetOffset(Vector2(-50.0f, -50.0f));
 
-		graphcis::MyTexture* playerTexture = MyResources::Find<graphcis::MyTexture>(L"Player");
+		graphics::MyTexture* playerTexture = MyResources::Find<graphics::MyTexture>(L"Player");
 		MyAnimator* playerAnimator = mPlayer->AddComponent<MyAnimator>();
 		
 		playerAnimator->CreateAnimation(L"Idle", playerTexture
@@ -73,7 +73,7 @@ namespace my
 		cat->AddComponent<MyCatScript>();
 		//cameraComp->SetTarget(cat);
 
-		graphcis::MyTexture* CatTexture = MyResources::Find<graphcis::MyTexture>(L"Cat");
+		graphics::MyTexture* CatTexture = MyResources::Find<graphics::MyTexture>(L"Cat");
 		MyAnimator* catAnimator = cat->AddComponent<MyAnimator>();
 
 		//MyBoxCollider2D* catCollider = cat->AddComponent<MyBoxCollider2D>();

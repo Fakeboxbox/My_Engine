@@ -7,8 +7,9 @@ namespace my
 {
 	void LoadResources()
 	{
-		MyResources::Load<graphcis::MyTexture>(L"Chicken", L"..\\Resources\\chicken.bmp");
-		MyResources::Load<graphcis::MyTexture>(L"Cat", L"..\\Resources\\ChickenAlpha.bmp");
-		MyResources::Load<graphcis::MyTexture>(L"Player", L"..\\Resources\\Player.bmp");
+		MyResources::Load<graphics::MyTexture>(L"Chicken", L"..\\Resources\\chicken.bmp");
+		MyResources::Load<graphics::MyTexture>(L"Cat", L"..\\Resources\\ChickenAlpha.bmp");
+		MyResources::Load<graphics::MyTexture>(L"Player", L"..\\Resources\\Player.bmp");
+		MyResources::Load<graphics::MyTexture>(L"SpringFloor", L"..\\Resources\\SpringFloor.bmp");
 	}
 }

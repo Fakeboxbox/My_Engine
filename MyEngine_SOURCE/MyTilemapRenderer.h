@@ -5,11 +5,11 @@
 
 namespace my
 {
-	class MySpriteRenderer : public MyComponent
+	class MyTilemapRenderer : public MyComponent
 	{
 	public:
-		MySpriteRenderer();
-		~MySpriteRenderer();
+		MyTilemapRenderer();
+		~MyTilemapRenderer();
 
 		void Initialize() override;
 		void Update() override;
@@ -17,10 +17,12 @@ namespace my
 		void Render(HDC hdc) override;
 
 		void SetTexture(graphics::MyTexture* texture) { mTexture = texture; }
-		void SetSize(math::Vector2 size) { mSize = size; }
+		void SetSize(Vector2 size) { mSize = size; }
 
 	private:
 		graphics::MyTexture* mTexture;
-		math::Vector2 mSize;
+		Vector2 mSize;
+		Vector2 mIndex;
+		Vector2 mTileSize;
 	};
 }

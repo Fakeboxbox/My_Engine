@@ -1,7 +1,7 @@
 #pragma once
 #include "MyResource.h"
 
-namespace my::graphcis
+namespace my::graphics
 {
 	class MyTexture : public MyResource
 	{

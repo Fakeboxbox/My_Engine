@@ -64,10 +64,10 @@ namespace my
 		if (renderer::mainCamera)
 			pos = renderer::mainCamera->CalculatePosition(pos);
 
-		graphcis::MyTexture::eTextureType type = mTexture->GetTextureType();
+		graphics::MyTexture::eTextureType type = mTexture->GetTextureType();
 		Sprite sprite = mAnimationSheet[mIndex];
 
-		if (type == graphcis::MyTexture::eTextureType::Bmp)
+		if (type == graphics::MyTexture::eTextureType::Bmp)
 		{
 			HDC imgHdc = mTexture->GetHdc();
 
@@ -109,7 +109,7 @@ namespace my
 
 			Rectangle(hdc, pos.x, pos.y, pos.x + 10, pos.y + 10);
 		}
-		else if (type == graphcis::MyTexture::eTextureType::Png)
+		else if (type == graphics::MyTexture::eTextureType::Png)
 		{
 			Gdiplus::ImageAttributes imgAtt = {};
 			imgAtt.SetColorKey(Gdiplus::Color(100, 100, 100), Gdiplus::Color(255, 255, 255));
@@ -139,7 +139,7 @@ namespace my
 		}
 	}
 
-	void MyAnimation::CreateAnimation(const std::wstring& name, graphcis::MyTexture* spriteSheet
+	void MyAnimation::CreateAnimation(const std::wstring& name, graphics::MyTexture* spriteSheet
 		, Vector2 leftTop, Vector2 size, Vector2 offset ,UINT spriteLegth, float duration)
 	{
 		mTexture = spriteSheet;

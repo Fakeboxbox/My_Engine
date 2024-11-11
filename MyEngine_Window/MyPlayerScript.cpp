@@ -139,7 +139,7 @@ namespace my
 			//벡터 테스트 코드
 			catSrc->SetPlayer(GetOwner());
 
-			graphcis::MyTexture* CatTexture = MyResources::Find<graphcis::MyTexture>(L"Cat");
+			graphics::MyTexture* CatTexture = MyResources::Find<graphics::MyTexture>(L"Cat");
 			MyAnimator* catAnimator = cat->AddComponent<MyAnimator>();
 
 			catAnimator->CreateAnimation(L"DownWalk", CatTexture
