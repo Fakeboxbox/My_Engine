@@ -67,6 +67,8 @@ namespace my
 
 		bool IsAcitve() { return mState == eState::Active; }
 		bool IsDead() { return mState == eState::Dead; }
+		void SetLayerType(eLayerType layerType) { mLayerType = layerType; }
+		eLayerType GetLayerType() { return mLayerType; }
 
 	private:
 		void initializeTransform();
@@ -75,5 +77,6 @@ namespace my
 	private:
 		eState mState;
 		std::vector<MyComponent*> mComponents;
+		eLayerType mLayerType;
 	};
 }

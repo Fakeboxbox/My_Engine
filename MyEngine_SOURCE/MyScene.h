@@ -21,7 +21,11 @@ namespace my
 		virtual void OnExit();
 
 		void AddGameObject(MyGameObject* gameObj, const enums::eLayerType type);
+		void EraseGameObject(MyGameObject* gameObj);
 		MyLayer* GetLayer(enums::eLayerType type) { return mLayers[(UINT)type]; }
+
+	private:
+		void createLayers();
 
 	private:
 		std::vector<MyLayer*> mLayers;

@@ -44,6 +44,7 @@ namespace my
 
 		//Player
 		mPlayer = object::Instantiate<MyPlayer>(enums::eLayerType::Player);
+		object::DontDestroyOnLoad(mPlayer);
 		MyPlayerScript* plScript = mPlayer->AddComponent<MyPlayerScript>();
 
 		//MyBoxCollider2D* collider = mPlayer->AddComponent<MyBoxCollider2D>();

@@ -21,6 +21,7 @@ namespace my
 
 		static MyScene* LoadScene(const std::wstring& name);
 		static MyScene* GetAcitiveScene() { return mActiveScene; }
+		static MyScene* GetDontDestroyOnLoad() { return mDontDestroyOnLoad; }
 
 		static void Initialize();
 		static void Update();
@@ -32,5 +33,6 @@ namespace my
 	private:
 		static std::map<const std::wstring, MyScene*> mScene;
 		static MyScene* mActiveScene;
+		static MyScene* mDontDestroyOnLoad;
 	};
 }

@@ -11,6 +11,7 @@ namespace my::object
 	static T* Instantiate(my::enums::eLayerType type)
 	{
 		T* gameObject = new T();
+		gameObject->SetLayerType(type);
 		MyScene* activeScene = MySceneManager::GetAcitiveScene();
 		MyLayer* layer = activeScene->GetLayer(type);
 		layer->AddGameObject(gameObject);
@@ -22,6 +23,7 @@ namespace my::object
 	static T* Instantiate(my::enums::eLayerType type, math::Vector2 position)
 	{
 		T* gameObject = new T();
+		gameObject->SetLayerType(type);
 		MyScene* activeScene = MySceneManager::GetAcitiveScene();
 		MyLayer* layer = activeScene->GetLayer(type);
 		layer->AddGameObject(gameObject);
@@ -32,11 +34,13 @@ namespace my::object
 		return gameObject;
 	}
 
-	/*static void Destory(MyGameObject* obj)
+	static void DontDestroyOnLoad(MyGameObject* obj)
 	{
-		if (obj != nullptr)
-			return;
-
-		obj->Death();
-	}*/
+		MyScene* activeScene = MySceneManager::GetAcitiveScene();
+		// 현재 씬에서 게임오브젝트를 지워준다
+		activeScene->EraseGameObject(obj);
+		// 해당 게임 오브젝트를 DontDestroyOnLoad씬으로 넣어준다.
+		MyScene* dontDestroyOnLoad = MySceneManager::GetDontDestroyOnLoad();
+		dontDestroyOnLoad->AddGameObject(obj, obj->GetLayerType());
+	}
 }
