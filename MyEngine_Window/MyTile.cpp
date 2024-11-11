@@ -1,4 +1,6 @@
 #include "MyTile.h"
+#include "MyTransform.h"
+#include "MyTilemapRenderer.h"
 
 namespace my
 {
@@ -20,5 +22,14 @@ namespace my
 	void MyTile::Render(HDC hdc)
 	{
 		MyGameObject::Render(hdc);
+	}
+
+	void MyTile::SetPosition(int x, int y)
+	{
+		MyTransform* tr = GetComponent<MyTransform>();
+		Vector2 pos;
+		pos.x = x * MyTilemapRenderer::TileSize.x;
+		pos.y = y * MyTilemapRenderer::TileSize.y;
+		tr->SetPos(pos);
 	}
 }

@@ -19,6 +19,9 @@ namespace my
 		void SetTexture(graphics::MyTexture* texture) { mTexture = texture; }
 		void SetSize(Vector2 size) { mSize = size; }
 
+	public:
+		static Vector2 TileSize;
+
 	private:
 		graphics::MyTexture* mTexture;
 		Vector2 mSize;
