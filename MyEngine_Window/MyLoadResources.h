@@ -11,5 +11,6 @@ namespace my
 		MyResources::Load<graphics::MyTexture>(L"Cat", L"..\\Resources\\ChickenAlpha.bmp");
 		MyResources::Load<graphics::MyTexture>(L"Player", L"..\\Resources\\Player.bmp");
 		MyResources::Load<graphics::MyTexture>(L"SpringFloor", L"..\\Resources\\SpringFloor.bmp");
+		MyResources::Load<graphics::MyTexture>(L"HPBAR", L"..\\Resources\\HPBAR.bmp");
 	}
 }

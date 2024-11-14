@@ -22,6 +22,10 @@ namespace my
 		void Load();
 
 	private:
+		void renderGreed(HDC hdc);
+		void createTileObject();
+
+	private:
 		std::vector<MyTile*> mTiles;
 	};
 }

@@ -23,6 +23,7 @@
 #include "MyRigdbody.h"
 #include "MyFloor.h"
 #include "MyFloorScript.h"
+#include "MyUIManager.h"
 
 namespace my
 {
@@ -99,7 +100,7 @@ namespace my
 		MyFloor* floor = object::Instantiate<MyFloor>(eLayerType::Floor, Vector2(100.0f, 600.0f));
 		floor->SetName(L"Floor");
 		MyBoxCollider2D* floorCol = floor->AddComponent<MyBoxCollider2D>();
-		floorCol->SetSize(Vector2(3.0f, 1.0f));
+		floorCol->SetSize(Vector2(5.0f, 1.0f));
 		floor->AddComponent<MyFloorScript>();
 
 		// 게임 오브젝트 생성후에 레이어와 게임오브젝트들의 init 함수를 호출
@@ -134,11 +135,14 @@ namespace my
 
 		MyColliderManager::CollisionLayerCheck(eLayerType::Player, eLayerType::Animal, true);
 		MyColliderManager::CollisionLayerCheck(eLayerType::Player, eLayerType::Floor, true);
+
+		MyUIManager::Push(eUIType::Button);
 	}
 
 	void MyPlayScene::OnExit()
 	{
-		/*MyTransform* tr = bg->GetComponent<MyTransform>();
-		tr->SetPos(Vector2(0, 0));*/
+		MyUIManager::Pop(eUIType::Button);
+
+		MyScene::OnExit();
 	}
 }

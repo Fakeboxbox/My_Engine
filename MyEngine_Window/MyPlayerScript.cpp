@@ -10,6 +10,7 @@
 #include "MyCollider.h"
 #include "MyResources.h"
 #include "MyRigdbody.h"
+#include "MyUIManager.h"
 
 namespace my
 {
@@ -150,10 +151,12 @@ namespace my
 		{
 			rb->AddForce(Vector2(200.0f, 0.0f));
 		}
+
 		if (MyInput::GetKey(eKeyCode::Left))
 		{
 			rb->AddForce(Vector2(-200.0f, 0.0f));
 		}
+
 		if (MyInput::GetKey(eKeyCode::Up))
 		{
 			//rb->AddForce(Vector2(0.0f, 200.0f));
@@ -161,6 +164,16 @@ namespace my
 			velocity.y = -500.0f;
 			rb->SetVelocity(velocity);
 			rb->SetGround(false);
+		}
+
+		if (MyInput::GetKey(eKeyCode::I))
+		{
+			MyUIManager::Push(eUIType::HpBar);
+		}
+
+		if (MyInput::GetKey(eKeyCode::O))
+		{
+			MyUIManager::Pop(eUIType::HpBar);
 		}
 
 	}

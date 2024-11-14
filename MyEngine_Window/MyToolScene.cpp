@@ -28,11 +28,6 @@ namespace my
 		camera->AddComponent<MyCameraScript>();
 		renderer::mainCamera = cameraComp;
 
-		/*MyTile* tile = object::Instantiate<MyTile>(eLayerType::Tile);
-		MyTilemapRenderer* tmr = tile->AddComponent<MyTilemapRenderer>();
-
-		tmr->SetTexture(MyResources::Find<graphics::MyTexture>(L"SpringFloor"));*/
-
 		MyScene::Initialize();
 	}
 
@@ -45,29 +40,7 @@ namespace my
 	{
 		MyScene::LateUpdate();
 
-		if (MyInput::GetKey(eKeyCode::LButton))
-		{
-			Vector2 pos = MyInput::GetMousePosition();
-			pos = renderer::mainCamera->CalculateTilePosition(pos);
-
-			if (pos.x >= 0.0f && pos.y >= 0.0f)
-			{
-				int idxX = pos.x / MyTilemapRenderer::TileSize.x;
-				int idxY = pos.y / MyTilemapRenderer::TileSize.y;
-
-				MyTile* tile = object::Instantiate<MyTile>(eLayerType::Tile);
-				MyTilemapRenderer* tmr = tile->AddComponent<MyTilemapRenderer>();
-				tmr->SetTexture(MyResources::Find<graphics::MyTexture>(L"SpringFloor"));
-				tmr->SetIndex(MyTilemapRenderer::SelectedIndex);
-
-				tile->SetIndexPosition(idxX, idxY);
-				mTiles.push_back(tile);
-			}
-			else
-			{
-				//
-			}
-		}
+		createTileObject();
 
 		if (MyInput::GetKeyDown(eKeyCode::S))
 		{
@@ -84,27 +57,7 @@ namespace my
 	{
 		MyScene::Render(hdc);
 
-		for (size_t i = 0; i < 50; i++)
-		{
-			Vector2 pos = renderer::mainCamera->CalculatePosition
-			(
-				Vector2(MyTilemapRenderer::TileSize.x * i, 0.0f)
-			);
-
-			MoveToEx(hdc, pos.x, 0, NULL);
-			LineTo(hdc, pos.x, 1000);
-		}
-
-		for (size_t i = 0; i < 50; i++)
-		{
-			Vector2 pos = renderer::mainCamera->CalculatePosition
-			(
-				Vector2(0.0f, MyTilemapRenderer::TileSize.y * i)
-			);
-
-			MoveToEx(hdc, 0, pos.y, NULL);
-			LineTo(hdc, 1000, pos.y);
-		}
+		renderGreed(hdc);
 	}
 
 	void MyToolScene::OnEnter()
@@ -222,6 +175,58 @@ namespace my
 		}
 
 		fclose(pFile);
+	}
+
+	void MyToolScene::renderGreed(HDC hdc)
+	{
+		for (size_t i = 0; i < 50; i++)
+		{
+			Vector2 pos = renderer::mainCamera->CalculatePosition
+			(
+				Vector2(MyTilemapRenderer::TileSize.x * i, 0.0f)
+			);
+
+			MoveToEx(hdc, pos.x, 0, NULL);
+			LineTo(hdc, pos.x, 1000);
+		}
+
+		for (size_t i = 0; i < 50; i++)
+		{
+			Vector2 pos = renderer::mainCamera->CalculatePosition
+			(
+				Vector2(0.0f, MyTilemapRenderer::TileSize.y * i)
+			);
+
+			MoveToEx(hdc, 0, pos.y, NULL);
+			LineTo(hdc, 1000, pos.y);
+		}
+	}
+
+	void MyToolScene::createTileObject()
+	{
+		if (MyInput::GetKey(eKeyCode::LButton))
+		{
+			Vector2 pos = MyInput::GetMousePosition();
+			pos = renderer::mainCamera->CalculateTilePosition(pos);
+
+			if (pos.x >= 0.0f && pos.y >= 0.0f)
+			{
+				int idxX = pos.x / MyTilemapRenderer::TileSize.x;
+				int idxY = pos.y / MyTilemapRenderer::TileSize.y;
+
+				MyTile* tile = object::Instantiate<MyTile>(eLayerType::Tile);
+				MyTilemapRenderer* tmr = tile->AddComponent<MyTilemapRenderer>();
+				tmr->SetTexture(MyResources::Find<graphics::MyTexture>(L"SpringFloor"));
+				tmr->SetIndex(MyTilemapRenderer::SelectedIndex);
+
+				tile->SetIndexPosition(idxX, idxY);
+				mTiles.push_back(tile);
+			}
+			else
+			{
+				//
+			}
+		}
 	}
 }
 

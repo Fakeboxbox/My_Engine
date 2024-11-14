@@ -4,6 +4,7 @@
 #include "MySceneManager.h"
 #include "MyResources.h"
 #include "MyColliderManager.h"
+#include "MyUIManager.h"
 
 namespace my
 {
@@ -30,6 +31,7 @@ namespace my
 		InitializeEtc();
 
 		MyColliderManager::Initialize();
+		MyUIManager::Initialize();
 		MySceneManager::Initialize();
 	}
 
@@ -45,13 +47,16 @@ namespace my
 	{
 		MyInput::Update();
 		MyTime::Update();
+
 		MyColliderManager::Update();
+		MyUIManager::Update();
 		MySceneManager::Update();
 	}
 
 	void MyApplication::LateUpdate()
 	{
 		MyColliderManager::LateUpdate();
+		MyUIManager::LateUpdate();
 		MySceneManager::LateUpdate();
 	}
 
@@ -60,7 +65,9 @@ namespace my
 		ClearRenderTarget();
 
 		MyTime::Render(mBackHdc);
+
 		MyColliderManager::Render(mBackHdc);
+		MyUIManager::Render(mBackHdc);
 		MySceneManager::Render(mBackHdc);
 
 		CopyRenderTarget(mBackHdc, mHdc);
@@ -74,6 +81,7 @@ namespace my
 	void MyApplication::Release()
 	{
 		MySceneManager::Release();
+		MyUIManager::Release();
 		MyResources::Release();
 	}
 
