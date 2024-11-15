@@ -59,6 +59,23 @@ namespace my
 		default:
 			break;
 		}
+
+		MyTransform* tr = GetOwner()->GetComponent<MyTransform>();
+		Vector2 pos = tr->GetPosition();
+		COLORREF color = mPixelMap->GetPixel(pos.x, pos.y + 50);
+
+		MyRigdbody* playerRb = GetOwner()->GetComponent<MyRigdbody>();
+		if (color == RGB(255, 0, 0))
+		{
+			playerRb->SetGround(true);
+
+			pos.y -= 1;
+			tr->SetPos(pos);
+		}
+		else
+		{
+			playerRb->SetGround(false);
+		}
 	}
 
 	void MyPlayerScript::LateUpdate()

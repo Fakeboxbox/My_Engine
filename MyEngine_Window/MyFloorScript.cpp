@@ -7,6 +7,7 @@
 #include "MyAnimator.h"
 #include "MyObject.h"
 #include "MyRigdbody.h"
+#include "MyAudioSource.h"
 
 namespace my
 {
@@ -60,6 +61,11 @@ namespace my
 
 			playerTr->SetPos(playerPos);
 		}
+
+		MyAudioSource* as = GetOwner()->GetComponent<MyAudioSource>();
+		//as->SetClip();
+		as->SetLoop(true);
+		as->Play();
 
 		playerRb->SetGround(true);
 	}

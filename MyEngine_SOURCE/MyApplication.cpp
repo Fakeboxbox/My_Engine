@@ -5,6 +5,7 @@
 #include "MyResources.h"
 #include "MyColliderManager.h"
 #include "MyUIManager.h"
+#include "MyFmod.h"
 
 namespace my
 {
@@ -30,6 +31,7 @@ namespace my
 		CreateBuffer(width, height);
 		InitializeEtc();
 
+		MyFmod::Initialize();
 		MyColliderManager::Initialize();
 		MyUIManager::Initialize();
 		MySceneManager::Initialize();

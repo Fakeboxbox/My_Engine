@@ -94,6 +94,12 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)MyUIButton.cpp">
       <Filter>UI\Button</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MyFmod.cpp">
+      <Filter>Fmod</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MyAudioClip.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MyAudioListener.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MyAudioSource.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)CommonInclude.h">
@@ -198,6 +204,12 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)MyUIButton.h">
       <Filter>UI\Button</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MyFmod.h">
+      <Filter>Fmod</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MyAudioClip.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MyAudioListener.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MyAudioSource.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Common">
@@ -265,6 +277,9 @@
     </Filter>
     <Filter Include="UI\HUD">
       <UniqueIdentifier>{eef0c643-d951-49c3-9c69-b5b09771edf7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fmod">
+      <UniqueIdentifier>{b26cf008-5851-4c3d-a5f8-816e9f90da94}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

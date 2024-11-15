@@ -24,6 +24,9 @@
 #include "MyFloor.h"
 #include "MyFloorScript.h"
 #include "MyUIManager.h"
+#include "MyAudioClip.h"
+#include "MyAudioListener.h"
+#include "MyAudioSource.h"
 
 namespace my
 {
@@ -76,6 +79,8 @@ namespace my
 		//Player
 		mPlayer = object::Instantiate<MyPlayer>(enums::eLayerType::Player);
 		object::DontDestroyOnLoad(mPlayer);
+		mPlayer->AddComponent<MyAudioListener>();
+
 		MyPlayerScript* plScript = mPlayer->AddComponent<MyPlayerScript>();
 
 		MyBoxCollider2D* collider = mPlayer->AddComponent<MyBoxCollider2D>();
@@ -97,11 +102,22 @@ namespace my
 		mPlayer->GetComponent<MyTransform>()->SetPos(Vector2(300.0f, 250.0f));
 		mPlayer->AddComponent<MyRigdbody>();
 
-		MyFloor* floor = object::Instantiate<MyFloor>(eLayerType::Floor, Vector2(100.0f, 600.0f));
+		MyFloor* floor = object::Instantiate<MyFloor>(eLayerType::Floor, Vector2(0.0f, 0.0f));
 		floor->SetName(L"Floor");
-		MyBoxCollider2D* floorCol = floor->AddComponent<MyBoxCollider2D>();
+
+		MySpriteRenderer* floorSR = floor->AddComponent<MySpriteRenderer>();
+		floorSR->SetTexture(MyResources::Find<graphics::MyTexture>(L"PixelMap"));
+
+		MyAudioSource* as = floor->AddComponent<MyAudioSource>();
+
+		plScript->SetPixelMapTexture(MyResources::Find<graphics::MyTexture>(L"PixelMap"));
+;		/*MyBoxCollider2D* floorCol = floor->AddComponent<MyBoxCollider2D>();
 		floorCol->SetSize(Vector2(5.0f, 1.0f));
-		floor->AddComponent<MyFloorScript>();
+		floor->AddComponent<MyFloorScript>();*/
+
+		MyAudioClip* ac = MyResources::Load<MyAudioClip>(L"BGSound", L"..\\Resources\\Sound\\smw_bonus_game_end.wav");
+		as->SetClip(ac);
+		as->Play();
 
 		// 게임 오브젝트 생성후에 레이어와 게임오브젝트들의 init 함수를 호출
 		MyScene::Initialize();
@@ -146,3 +162,9 @@ namespace my
 		MyScene::OnExit();
 	}
 }
+
+/*
+클래스와 개체의 차이
+클래스는 코드영역에 이런게 있다고 알려주기만 하고
+메모리 영역에 올려 실제로 사용되려면 개체로 만들어야한다.
+*/

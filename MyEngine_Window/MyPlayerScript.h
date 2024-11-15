@@ -1,5 +1,6 @@
 #pragma once
 #include "..\\MyEngine_SOURCE\\MyScript.h"
+#include "..\\MyEngine_SOURCE\\MyTexture.h"
 
 namespace my
 {
@@ -28,6 +29,8 @@ namespace my
 		void OnCollisionEnter(class MyCollider* other) override;
 		void OnCollisionStay(class MyCollider* other) override;
 		void OnCollisionExit(class MyCollider* other) override;
+
+		void SetPixelMapTexture(graphics::MyTexture* texture) { mPixelMap = texture; }
 		
 	private:
 		void idle();
@@ -37,6 +40,7 @@ namespace my
 	private:
 		eState mState;
 		class MyAnimator* mAnimator;
+		graphics::MyTexture* mPixelMap;
 	};
 }
 

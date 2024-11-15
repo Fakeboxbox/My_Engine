@@ -11,6 +11,8 @@ namespace my::enums
 		SpriteRenderer,
 		Animator,
 		Camera,
+		AudioListener,
+		AudioSource,
 		End
 	};
 

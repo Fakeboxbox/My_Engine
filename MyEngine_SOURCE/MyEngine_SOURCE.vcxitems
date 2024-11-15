@@ -18,6 +18,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)MyAnimation.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MyAnimator.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MyApplication.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MyAudioClip.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MyAudioListener.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MyAudioSource.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MyBoxCollider2D.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MyCamera.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MyCircleCollider2D.h" />
@@ -27,6 +30,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)MyDontDestroyOnLoad.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MyEntity.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MyEnums.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MyFmod.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MyGameObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MyInput.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MyLayer.h" />
@@ -53,6 +57,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)MyAnimation.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MyAnimator.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MyApplication.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MyAudioClip.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MyAudioListener.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MyAudioSource.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MyBoxCollider2D.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MyCamera.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MyCircleCollider2D.cpp" />
@@ -61,6 +68,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)MyComponent.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MyDontDestroyOnLoad.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MyEntity.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MyFmod.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MyGameObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MyInput.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MyLayer.cpp" />

@@ -9,7 +9,6 @@ namespace my
 		, mSize(Vector2::Zero)
 		, mbFullScreen(false)
 		, mbEnabled(false)
-		, mParent(nullptr)
 	{
 
 	}

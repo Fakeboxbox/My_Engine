@@ -59,7 +59,7 @@ namespace my
 		bool mbFullScreen;
 		bool mbEnabled;
 
-		MyUIBase* mParent;
+		//MyUIBase* mParent;
 	};
 }
 
